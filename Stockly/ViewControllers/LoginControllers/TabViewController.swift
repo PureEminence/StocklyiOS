@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//Main tab controller after login screen
 class TabViewController : UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,7 +16,7 @@ class Item {
         var costPer: Int
         var currentStock: Int
         var desc: String
-        var initialStock: Int
+        var numSold: Int
         var price: Int
         var tags: String
         var dateAdded: Timestamp
@@ -29,7 +29,7 @@ class Item {
          costPer: Int,
          currentStock: Int,
          desc: String,
-         initialStock: Int,
+         numSold: Int,
          price: Int,
          tags: String,
          dateAdded: Timestamp,
@@ -42,7 +42,7 @@ class Item {
         self.costPer = costPer
         self.currentStock = currentStock
         self.desc = desc
-        self.initialStock = initialStock
+        self.numSold = numSold
         self.price = price
         self.tags = tags
         self.dateAdded = dateAdded

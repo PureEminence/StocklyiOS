@@ -14,5 +14,6 @@ struct Constants {
         static let inventoryViewController = "InventoryViewController"
         static let viewController = "ViewController"
         static let navViewController = "NavViewController"
+        
     }
 }

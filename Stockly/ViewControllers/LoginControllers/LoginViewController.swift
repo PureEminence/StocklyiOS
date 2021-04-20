@@ -11,10 +11,7 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailText: UITextField!
-    
-    
     @IBOutlet weak var passwordText: UITextField!
-    
     @IBOutlet weak var errorMessage: UILabel!
     
     override func viewDidLoad() {
@@ -24,7 +21,7 @@ class LoginViewController: UIViewController {
         setupElements()
     }
     
-    func setupElements() {
+    func setupElements() { //hides error msg until needed
         errorMessage.alpha = 0 
     }
 
@@ -37,14 +34,12 @@ class LoginViewController: UIViewController {
         
         //Sign in
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
-            if error != nil {
+            if error != nil { //if there is an error display error
                 self.errorMessage.text = "Error logging in"
                 self.errorMessage.alpha = 1
                 
             }
-            else {
-                UserDefaults.standard.setValue(email, forKey: "email")
-                
+            else { //get current VC and display new
                 let tabViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabViewController) as? TabViewController
                 //display
                 self.view.window?.rootViewController = tabViewController

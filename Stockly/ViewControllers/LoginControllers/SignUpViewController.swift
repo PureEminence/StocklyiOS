@@ -16,16 +16,14 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var errorMessage: UILabel!
+    @IBOutlet weak var storeNameText: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-     setupElements()
-        
+        setupElements()
     }
     
-    func setupElements() {
+    func setupElements() { //hide error message until needed
         errorMessage.alpha = 0
     }
     
@@ -34,14 +32,14 @@ class SignUpViewController: UIViewController {
         if fNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             lastNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            passwordText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
+            passwordText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            storeNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
             {
                 return "Please fill out all fields"
             }
         
-
+        //Secure password check
         let cleanPass = passwordText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
         if Utilities.isPasswordValid(cleanPass) == false {
             return "Password must include at least 8 characters, a number, and a special character."
         }
@@ -61,8 +59,10 @@ class SignUpViewController: UIViewController {
             //clean inputs
             let firstName = fNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let lastName = lastNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let storeName = storeNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let pass = passwordText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
             
             //Create account if no errors arise
             Auth.auth().createUser(withEmail: email, password: pass) { (result, error) in
@@ -71,6 +71,7 @@ class SignUpViewController: UIViewController {
                 let docData: [String: Any] = [
                     "firstName": firstName,
                     "lastName": lastName,
+                    "storeName": storeName,
                     "email": email,
                     "created": Date()]
                 
@@ -81,7 +82,7 @@ class SignUpViewController: UIViewController {
                     //connect and create account
                     let db = Firestore.firestore()
                     //store user in db
-                    db.collection("users").document(uid!).setData(docData) { (error) in
+                    db.collection("account").document(uid!).setData(docData) { (error) in
                         
                         if error != nil {
                             self.displayError(error: "Failed to save user data.")

@@ -1,13 +1,13 @@
 //
-//  NavViewController.swift
+//  AnalyticsViewController.swift
 //  Stockly
 //
-//  Created by Matt Owen on 4/13/21.
+//  Created by Matt Owen on 4/19/21.
 //
 
 import UIKit
 
-class NavViewController: UIViewController {
+class AnalyticsViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

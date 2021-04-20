@@ -20,7 +20,6 @@ class InventoryViewController: UIViewController {
     let uid = Auth.auth().currentUser?.uid.description
 
     var itemCount = 0
-    var picURLs = [URL]()
     var pictures = [UIImage]()
     var placeholderImage = UIImage(named: "loadingPicture")
     var items = [Item]()
@@ -41,8 +40,9 @@ class InventoryViewController: UIViewController {
     func databasePull() {
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid.description
+        print(uid!)
     //pull items where uid matches logged in user
-    db.collection("items").whereField("uid", isEqualTo: uid)
+        db.collection("items").whereField("uid", isEqualTo: uid!)
         .getDocuments() { [self] (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -57,22 +57,29 @@ class InventoryViewController: UIViewController {
                     var costPer = doc.get("costPer") as! Int
                     var currentStock = doc.get("currentStock") as! Int
                     var desc = doc.get("desc") as! String
-                    var initialStock = doc.get("initialStock") as! Int
                     var price = doc.get("price") as! Int
                     var tags = doc.get("tags") as! String
                     var dateAdded = doc.get("dateAdded") as! Timestamp
-                    var uid = doc.get("uid") as! String
-                    var picId = doc.get("picURL") as! String
+                    var picId = doc.get("image") as! String
+                    var numSold = doc.get("numSold") as! Int
                     
                     //loading image and storing
-                    var picURL = URL(string: picId)
-                    if var data = try? Data(contentsOf: picURL!) {
-                        DispatchQueue.global().async {
+                    var picURL:URL = URL(string: picId)!
+                
+                    if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
+                        let imageData:NSData = NSData(contentsOf: picURL)!
+                        let image = UIImage(data: imageData as Data)
+                        pictures.append(image!)
+                    } else {
+                    if var data = try? Data(contentsOf: picURL) {
+                        DispatchQueue.global(qos: .userInteractive).async {
                             var tempPic = UIImage(data: data)
                             pictures.append(tempPic!)
                         }
                     }
-                    items.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, initialStock: initialStock, price: price, tags: tags, dateAdded: dateAdded ,uid: uid ,id: id, picId: picId))
+                        
+                    }
+                    items.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId))
                     
                     self.tableView.reloadData()//reload tableView to populate data
                 }
@@ -94,12 +101,31 @@ extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
         
         let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! itemCell
-        
+        print(indexPath)
         cell.imageC.image = pictures[indexPath.row]
         cell.setItem(item: item)
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "EditItemViewController") as? EditItemViewController {
+            
+            vc.image = pictures[indexPath.row]
+            var itemsData = items[indexPath.row]
+        
+            vc.itemData = itemsData
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+       
+        
+        
+    
+        
+    }
+    
 }
 
 
