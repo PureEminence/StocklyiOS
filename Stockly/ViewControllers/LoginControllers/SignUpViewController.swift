@@ -54,12 +54,11 @@ class SignUpViewController: UIViewController {
         
         if error != nil {
             displayError(error: error!)
-        }
-        else {
+        } else {
             //clean inputs
             let firstName = fNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let lastName = lastNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let storeName = storeNameText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let storeName = storeNameText.text!.trimmingCharacters(in: .newlines)
             let email = emailText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let pass = passwordText.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             

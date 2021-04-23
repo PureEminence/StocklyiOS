@@ -13,34 +13,27 @@ class InventoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
-    @IBOutlet var table: UITableView!
-    
-
-    
     let uid = Auth.auth().currentUser?.uid.description
 
     var itemCount = 0
     var pictures = [UIImage]()
     var placeholderImage = UIImage(named: "loadingPicture")
     var items = [Item]()
-    
-    
+  
     override func viewDidLoad() { //View Loading begins
         super.viewDidLoad()
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-       
-       databasePull()
-        
-    }// end viewdidload
  
+       databasePull()
+    } // end viewdidload
+    
 //------------------------------------------------------Database Pull
     func databasePull() {
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid.description
-        print(uid!)
     //pull items where uid matches logged in user
         db.collection("items").whereField("uid", isEqualTo: uid!)
         .getDocuments() { [self] (querySnapshot, err) in
@@ -49,7 +42,7 @@ class InventoryViewController: UIViewController {
             } else {
                 for doc in querySnapshot!.documents {
                     itemCount+=1
-                    print(itemCount)
+                    
 
                     //pulling instance data from document and store in items
                     var id = doc.documentID
@@ -62,24 +55,31 @@ class InventoryViewController: UIViewController {
                     var dateAdded = doc.get("dateAdded") as! Timestamp
                     var picId = doc.get("image") as! String
                     var numSold = doc.get("numSold") as! Int
+                    var sellerName = doc.get("sellerName") as! String
+                    
+                    print("Pic ID is \(picId)")
                     
                     //loading image and storing
-                    var picURL:URL = URL(string: picId)!
-                
-                    if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
-                        let imageData:NSData = NSData(contentsOf: picURL)!
-                        let image = UIImage(data: imageData as Data)
-                        pictures.append(image!)
+                    if picId == "" {
+                        picId = "No pic data"
                     } else {
-                    if var data = try? Data(contentsOf: picURL) {
-                        DispatchQueue.global(qos: .userInteractive).async {
-                            var tempPic = UIImage(data: data)
-                            pictures.append(tempPic!)
+                        var picURL:URL = URL(string: picId)!
+                        if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
+                            let imageData:NSData = NSData(contentsOf: picURL)!
+                            let image = UIImage(data: imageData as Data)
+                            pictures.append(image!)
+                        } else {
+                        if var data = try? Data(contentsOf: picURL) {
+                            DispatchQueue.global(qos: .userInteractive).async {
+                                var tempPic = UIImage(data: data)
+                                pictures.append(tempPic!)
+                            }
                         }
                     }
+                    
                         
                     }
-                    items.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId))
+                    items.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName))
                     
                     self.tableView.reloadData()//reload tableView to populate data
                 }
@@ -91,6 +91,7 @@ class InventoryViewController: UIViewController {
 //extention for setting table view cells
 extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
     
+    
     //get items size
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -101,7 +102,7 @@ extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
         
         let item = items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! itemCell
-        print(indexPath)
+
         cell.imageC.image = pictures[indexPath.row]
         cell.setItem(item: item)
 
@@ -113,8 +114,9 @@ extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
             
             vc.image = pictures[indexPath.row]
             var itemsData = items[indexPath.row]
-        
+            vc.indexPath = indexPath
             vc.itemData = itemsData
+            
             
             self.navigationController?.pushViewController(vc, animated: true)
         }

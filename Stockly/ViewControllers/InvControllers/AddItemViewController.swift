@@ -128,17 +128,26 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             let desc = descText.text
             let tags = tagsText.text
             
+            let imageURL = urlString
+            print("printing\(urlString)")
             let uid = Auth.auth().currentUser?.uid.description
             let sold:Int = 0
             let db = Firestore.firestore()
-           //save to database
-            db.collection("items").addDocument(data: ["name": itemName, "price": price, "costPer": costPer, "desc": desc, "tags": tags, "currentStock": initStock,"dateAdded": Date(),"uid":uid,"numSold":sold, "image": urlString]) {
-                (error) in
-                
-                if error != nil {
-                    self.displayError(error: "Failed to save data.")
-                }
-            }
+            
+            
+            let docRef = db.collection("account").document(uid!)
+                docRef.getDocument { (document, error) in
+                       if let document = document, document.exists {
+                        let dataDescription:[String: Any] = document.data()!
+                        //get store name and unwrap
+                        let storeName = dataDescription["storeName"].map(String.init(describing:)) ?? "nil"
+                        
+                        //save to database
+                        db.collection("items").addDocument(data: ["sellerName" : storeName,"name": itemName!, "price": price!, "costPer": costPer!, "desc": desc!, "tags": tags!, "currentStock": initStock!,"dateAdded": Date(),"uid":uid!,"numSold":sold, "image": imageURL])
+                       } else {
+                           print("Document does not exist")
+                       }
+                   }
             self.toInv()
         }
         

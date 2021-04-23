@@ -22,11 +22,7 @@ class itemCell: UITableViewCell {
     
     func setItem(item: Item) {
         
-//        let picURL = URL(string: item.picId)
-//        let picView: UIImageView = self.imageView!
-//        let tempImg = UIImage(named: "tempImage.jpg")
-//        picView.sd_setImage(with: picURL, placeholderImage: tempImg)
-        
+
         nameC.text = item.name
         priceC.text = "$".appending(String(item.price))
         stockC.text = "Stock: ".appending(String(item.currentStock))

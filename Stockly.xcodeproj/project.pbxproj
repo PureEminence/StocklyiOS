@@ -44,6 +44,9 @@
 		C9E8B0AB262E606D00DBB0ED /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B0AA262E606D00DBB0ED /* PurchaseViewController.swift */; };
 		C9E8B0AE262E607600DBB0ED /* SaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B0AD262E607600DBB0ED /* SaleViewController.swift */; };
 		C9E8B0B9262E76E200DBB0ED /* UserStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E8B0B8262E76E200DBB0ED /* UserStoreViewController.swift */; };
+		C9E91082263244780095CCD6 /* storeItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E91081263244780095CCD6 /* storeItemViewCell.swift */; };
+		C9E910852632995A0095CCD6 /* cartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910842632995A0095CCD6 /* cartCell.swift */; };
+		C9E9108D2632A1AC0095CCD6 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9108C2632A1AC0095CCD6 /* CartItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +91,9 @@
 		C9E8B0AA262E606D00DBB0ED /* PurchaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		C9E8B0AD262E607600DBB0ED /* SaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleViewController.swift; sourceTree = "<group>"; };
 		C9E8B0B8262E76E200DBB0ED /* UserStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreViewController.swift; sourceTree = "<group>"; };
+		C9E91081263244780095CCD6 /* storeItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storeItemViewCell.swift; sourceTree = "<group>"; };
+		C9E910842632995A0095CCD6 /* cartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartCell.swift; sourceTree = "<group>"; };
+		C9E9108C2632A1AC0095CCD6 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C960813E2627DB7E00A0C4D2 /* Item.swift */,
+				C9E9108C2632A1AC0095CCD6 /* CartItem.swift */,
 				C93064762623A27E00A3A837 /* ViewControllers */,
 				C96DD2E82624079B00DB0F72 /* Helpers */,
 				C93753112623EFA7002DF353 /* GoogleService-Info.plist */,
@@ -173,6 +180,8 @@
 				C96DD2E9262407E800DB0F72 /* Utilities.swift */,
 				C96DD2EC26242FB600DB0F72 /* Constants.swift */,
 				C960813B2627D84700A0C4D2 /* itemCell.swift */,
+				C9E91081263244780095CCD6 /* storeItemViewCell.swift */,
+				C9E910842632995A0095CCD6 /* cartCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -357,6 +366,7 @@
 				C96DD309262582A800DB0F72 /* InventoryViewController.swift in Sources */,
 				C9E8B0B9262E76E200DBB0ED /* UserStoreViewController.swift in Sources */,
 				C93064602623A24C00A3A837 /* ViewController.swift in Sources */,
+				C9E910852632995A0095CCD6 /* cartCell.swift in Sources */,
 				C9E8B085262E5E7600DBB0ED /* StoreItemViewController.swift in Sources */,
 				C96DD2EA262407E800DB0F72 /* Utilities.swift in Sources */,
 				C9E8B095262E5F7400DBB0ED /* DashboardViewController.swift in Sources */,
@@ -364,6 +374,7 @@
 				C9E8B0AB262E606D00DBB0ED /* PurchaseViewController.swift in Sources */,
 				C960813C2627D84700A0C4D2 /* itemCell.swift in Sources */,
 				C9E8B09C262E5FBE00DBB0ED /* SavedViewController.swift in Sources */,
+				C9E9108D2632A1AC0095CCD6 /* CartItem.swift in Sources */,
 				C930645C2623A24C00A3A837 /* AppDelegate.swift in Sources */,
 				C9E8B09F262E5FF500DBB0ED /* MessagesViewController.swift in Sources */,
 				C9E8B0A5262E602D00DBB0ED /* RecentyViewedViewController.swift in Sources */,
@@ -376,6 +387,7 @@
 				C96DD30F26262CF200DB0F72 /* NavViewController.swift in Sources */,
 				C9E8B099262E5FA600DBB0ED /* PurchasesViewController.swift in Sources */,
 				C9E8B0AE262E607600DBB0ED /* SaleViewController.swift in Sources */,
+				C9E91082263244780095CCD6 /* storeItemViewCell.swift in Sources */,
 				C93064742623A27A00A3A837 /* SignUpViewController.swift in Sources */,
 				C9E8B08E262E5ED300DBB0ED /* CheckoutViewController.swift in Sources */,
 				C96DD2F02624A55D00DB0F72 /* TabViewController.swift in Sources */,
