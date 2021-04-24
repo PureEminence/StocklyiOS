@@ -33,8 +33,8 @@ class PurchasesViewController: UIViewController, UITableViewDelegate, UITableVie
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid.description
     //pull items where uid matches logged in user
-        db.collection("account").document(uid!)
-            .collection("purchases").getDocuments() { [self] (querySnapshot, err) in
+        db.collection("transactions").whereField("uid", isEqualTo: uid!)
+            .getDocuments() { [self] (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {

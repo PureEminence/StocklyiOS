@@ -15,4 +15,5 @@ target 'Stockly' do
   pod 'Firebase/Storage'
   pod 'SDWebImage'
   pod 'FirebaseUI/Storage'
+  pod 'MessageKit'
 end

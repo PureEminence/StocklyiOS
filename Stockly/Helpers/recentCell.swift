@@ -16,7 +16,6 @@ class recentCell: UITableViewCell {
 
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var priceText: UILabel!
-    @IBOutlet weak var numStockText: UILabel!
     @IBOutlet weak var sellerNameText: UIButton!
     @IBOutlet weak var itemImage: UIImageView!
     
@@ -32,7 +31,6 @@ class recentCell: UITableViewCell {
         itemID = item.id
         nameText.text = item.name
         priceText.text = String(item.price)
-        numStockText.text = String(item.currentStock)
         sellerNameText.setTitle(item.sellerName, for: .normal)
     }
 }

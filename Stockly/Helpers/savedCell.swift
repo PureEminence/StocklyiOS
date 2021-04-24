@@ -15,7 +15,6 @@ class savedCell: UITableViewCell {
 
     
     @IBOutlet weak var itemImage: UIImageView!
-    @IBOutlet weak var quantityText: UILabel!
     @IBOutlet weak var priceText: UILabel!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var sellerButtonOut: UIButton!
@@ -32,7 +31,6 @@ class savedCell: UITableViewCell {
         itemID = item.id
         nameText.text = item.name
         priceText.text = String(item.price)
-        quantityText.text = String(item.currentStock)
         sellerButtonOut.setTitle(item.sellerName, for: .normal)
     }
     

@@ -16,6 +16,8 @@
 		C93064682623A24D00A3A837 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93064662623A24D00A3A837 /* LaunchScreen.storyboard */; };
 		C93064712623A26A00A3A837 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93064702623A26A00A3A837 /* LoginViewController.swift */; };
 		C93064742623A27A00A3A837 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93064732623A27A00A3A837 /* SignUpViewController.swift */; };
+		C944EDB32634D15000D79ED5 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C944EDB22634D15000D79ED5 /* MessagesCell.swift */; };
+		C944EDBA2634D2DD00D79ED5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C944EDB92634D2DD00D79ED5 /* ChatViewController.swift */; };
 		C960813C2627D84700A0C4D2 /* itemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C960813B2627D84700A0C4D2 /* itemCell.swift */; };
 		C960813F2627DB7E00A0C4D2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C960813E2627DB7E00A0C4D2 /* Item.swift */; };
 		C96DD2E52624030D00DB0F72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C93753112623EFA7002DF353 /* GoogleService-Info.plist */; };
@@ -55,6 +57,10 @@
 		C9E910AF2633EEB60095CCD6 /* purchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910AE2633EEB60095CCD6 /* purchaseCell.swift */; };
 		C9E910B22633EEF90095CCD6 /* PurCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910B12633EEF90095CCD6 /* PurCItem.swift */; };
 		C9E910B52633FD7B0095CCD6 /* PurchaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */; };
+		C9E910B8263482720095CCD6 /* SaleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910B7263482720095CCD6 /* SaleItem.swift */; };
+		C9E910BB263483520095CCD6 /* SalesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910BA263483520095CCD6 /* SalesItem.swift */; };
+		C9E910BE2634849F0095CCD6 /* SalesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910BD2634849F0095CCD6 /* SalesCell.swift */; };
+		C9E910C1263485E00095CCD6 /* SaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910C0263485E00095CCD6 /* SaleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +78,8 @@
 		C93064702623A26A00A3A837 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C93064732623A27A00A3A837 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		C93753112623EFA7002DF353 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C944EDB22634D15000D79ED5 /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
+		C944EDB92634D2DD00D79ED5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C960813B2627D84700A0C4D2 /* itemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemCell.swift; sourceTree = "<group>"; };
 		C960813E2627DB7E00A0C4D2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C96DD2E9262407E800DB0F72 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -110,6 +118,10 @@
 		C9E910AE2633EEB60095CCD6 /* purchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purchaseCell.swift; sourceTree = "<group>"; };
 		C9E910B12633EEF90095CCD6 /* PurCItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurCItem.swift; sourceTree = "<group>"; };
 		C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseItem.swift; sourceTree = "<group>"; };
+		C9E910B7263482720095CCD6 /* SaleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleItem.swift; sourceTree = "<group>"; };
+		C9E910BA263483520095CCD6 /* SalesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesItem.swift; sourceTree = "<group>"; };
+		C9E910BD2634849F0095CCD6 /* SalesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesCell.swift; sourceTree = "<group>"; };
+		C9E910C0263485E00095CCD6 /* SaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +174,12 @@
 		C930645A2623A24C00A3A837 /* Stockly */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8B087262E5E8E00DBB0ED /* CartViewController.swift */,
+				C9E910AB2633E80C0095CCD6 /* PurItem.swift */,
+				C9E910B12633EEF90095CCD6 /* PurCItem.swift */,
+				C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */,
+				C9E910B7263482720095CCD6 /* SaleItem.swift */,
+				C9E910BA263483520095CCD6 /* SalesItem.swift */,
 				C9E910972633CB440095CCD6 /* SavedItem.swift */,
 				C960813E2627DB7E00A0C4D2 /* Item.swift */,
 				C9E9108C2632A1AC0095CCD6 /* CartItem.swift */,
@@ -174,9 +192,6 @@
 				C93064642623A24D00A3A837 /* Assets.xcassets */,
 				C93064662623A24D00A3A837 /* LaunchScreen.storyboard */,
 				C93064692623A24D00A3A837 /* Info.plist */,
-				C9E910AB2633E80C0095CCD6 /* PurItem.swift */,
-				C9E910B12633EEF90095CCD6 /* PurCItem.swift */,
-				C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */,
 			);
 			path = Stockly;
 			sourceTree = "<group>";
@@ -206,6 +221,9 @@
 				C9E9109B2633D7AD0095CCD6 /* recentCell.swift */,
 				C9E9109E2633E14E0095CCD6 /* purchasesCell.swift */,
 				C9E910AE2633EEB60095CCD6 /* purchaseCell.swift */,
+				C9E910BD2634849F0095CCD6 /* SalesCell.swift */,
+				C9E910C0263485E00095CCD6 /* SaleCell.swift */,
+				C944EDB22634D15000D79ED5 /* MessagesCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -237,7 +255,6 @@
 			children = (
 				C9E8B080262E5E4300DBB0ED /* StoreViewController.swift */,
 				C9E8B084262E5E7600DBB0ED /* StoreItemViewController.swift */,
-				C9E8B087262E5E8E00DBB0ED /* CartViewController.swift */,
 				C9E8B08D262E5ED300DBB0ED /* CheckoutViewController.swift */,
 				C9E8B090262E5EE500DBB0ED /* OrderPlacedViewController.swift */,
 				C9E8B0B8262E76E200DBB0ED /* UserStoreViewController.swift */,
@@ -257,6 +274,7 @@
 				C9E8B0A7262E605400DBB0ED /* AnalyticsViewController.swift */,
 				C9E8B0AA262E606D00DBB0ED /* PurchaseViewController.swift */,
 				C9E8B0AD262E607600DBB0ED /* SaleViewController.swift */,
+				C944EDB92634D2DD00D79ED5 /* ChatViewController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -388,6 +406,7 @@
 				C9E8B07C262E5E0700DBB0ED /* EditItemViewController.swift in Sources */,
 				C93064712623A26A00A3A837 /* LoginViewController.swift in Sources */,
 				C9E9109C2633D7AD0095CCD6 /* recentCell.swift in Sources */,
+				C944EDBA2634D2DD00D79ED5 /* ChatViewController.swift in Sources */,
 				C96DD309262582A800DB0F72 /* InventoryViewController.swift in Sources */,
 				C9E8B0B9262E76E200DBB0ED /* UserStoreViewController.swift in Sources */,
 				C93064602623A24C00A3A837 /* ViewController.swift in Sources */,
@@ -397,12 +416,14 @@
 				C96DD2EA262407E800DB0F72 /* Utilities.swift in Sources */,
 				C9E910AF2633EEB60095CCD6 /* purchaseCell.swift in Sources */,
 				C9E8B095262E5F7400DBB0ED /* DashboardViewController.swift in Sources */,
+				C9E910C1263485E00095CCD6 /* SaleCell.swift in Sources */,
 				C960813F2627DB7E00A0C4D2 /* Item.swift in Sources */,
 				C9E910982633CB440095CCD6 /* SavedItem.swift in Sources */,
 				C9E8B0AB262E606D00DBB0ED /* PurchaseViewController.swift in Sources */,
 				C960813C2627D84700A0C4D2 /* itemCell.swift in Sources */,
 				C9E8B09C262E5FBE00DBB0ED /* SavedViewController.swift in Sources */,
 				C9E910912633C06E0095CCD6 /* savedCell.swift in Sources */,
+				C9E910BE2634849F0095CCD6 /* SalesCell.swift in Sources */,
 				C9E910B22633EEF90095CCD6 /* PurCItem.swift in Sources */,
 				C9E9108D2632A1AC0095CCD6 /* CartItem.swift in Sources */,
 				C930645C2623A24C00A3A837 /* AppDelegate.swift in Sources */,
@@ -414,17 +435,20 @@
 				C9E8B0A8262E605400DBB0ED /* AnalyticsViewController.swift in Sources */,
 				C96DD30526256B2B00DB0F72 /* ProfileViewController.swift in Sources */,
 				C9E8B088262E5E8E00DBB0ED /* CartViewController.swift in Sources */,
+				C9E910B8263482720095CCD6 /* SaleItem.swift in Sources */,
 				C96DD30F26262CF200DB0F72 /* NavViewController.swift in Sources */,
 				C9E8B099262E5FA600DBB0ED /* PurchasesViewController.swift in Sources */,
 				C9E8B0AE262E607600DBB0ED /* SaleViewController.swift in Sources */,
 				C9E91082263244780095CCD6 /* storeItemViewCell.swift in Sources */,
 				C93064742623A27A00A3A837 /* SignUpViewController.swift in Sources */,
+				C944EDB32634D15000D79ED5 /* MessagesCell.swift in Sources */,
 				C9E8B08E262E5ED300DBB0ED /* CheckoutViewController.swift in Sources */,
 				C96DD2F02624A55D00DB0F72 /* TabViewController.swift in Sources */,
 				C9E8B0A2262E601800DBB0ED /* SalesViewController.swift in Sources */,
 				C9E8B081262E5E4300DBB0ED /* StoreViewController.swift in Sources */,
 				C96DD2ED26242FB600DB0F72 /* Constants.swift in Sources */,
 				C9E910B52633FD7B0095CCD6 /* PurchaseItem.swift in Sources */,
+				C9E910BB263483520095CCD6 /* SalesItem.swift in Sources */,
 				C96DD30C2626045100DB0F72 /* ProfileEditViewController.swift in Sources */,
 				C9E910AC2633E80C0095CCD6 /* PurItem.swift in Sources */,
 				C96DD2FE262569D000DB0F72 /* PhotoViewController.swift in Sources */,

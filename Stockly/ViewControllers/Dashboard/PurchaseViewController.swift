@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+
 class PurchaseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var orderIDText: UILabel!
@@ -28,9 +29,10 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
+        var date = orderDetails[0].date.dateValue().description
         orderIDText.text = orderDetails[0].id
-        dateText.text = orderDetails[0].date.description
-        orderTotalText.text = orderDetails[0].total
+        dateText.text = String(date.dropLast(5))
+        orderTotalText.text = "$".appending(orderDetails[0].total)
         numItemsText.text = String(orderDetails[0].quantity)
     
         databasePull()
@@ -40,9 +42,8 @@ class PurchaseViewController: UIViewController, UITableViewDelegate, UITableView
 
     func databasePull() {
         
-        db.collection("account").document(uid!)
-            .collection("purchases").document(orderDetails[0].id)
-            .collection("itemsPurchased").getDocuments() { [self] (querySnapshot, err) in
+        db.collection("transactions").document(orderDetails[0].id)
+            .collection("transItems").getDocuments(){ [self] (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {

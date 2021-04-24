@@ -33,6 +33,10 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var pickerNumbers = [Int]()
     var pickerNum: Int!
     var itemID: String!
+    var userID: String!
+    
+    let uid = Auth.auth().currentUser?.uid.description
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         addedtoCartText.alpha = 0 //hide till needed
@@ -55,13 +59,33 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         
     }
     
-    @IBAction func addCartBtn(_ sender: Any) {
-        let db = Firestore.firestore()
+    
+    @IBAction func saveButton(_ sender: Any) {
         
+        let numItems:Int = pickNum
+        let insertData:[String: Any] = [
+            "name": itemData.name,
+            "price": itemData.price,
+            "image":itemData.picId,
+            "uid":itemData.uid,
+            "salePrice": itemData.price,
+            "sellerName": itemData.sellerName,
+            "dateAdded": Date()
+        ]
+        
+        db.collection("account").document(uid!)
+            .collection("saved").document(itemData.id)
+            .setData(insertData)
+        
+        addedtoCartText.text = "Added item to saved list"
+        addedtoCartText.alpha = 1
+    }
+    
+    @IBAction func addCartBtn(_ sender: Any) {
         
         let numItems:Int = pickerNum
-        let uid = Auth.auth().currentUser?.uid.description
         let price = numItems * itemData.price
+        
         let insertData:[String: Any] = [
             "name": itemData.name,
             "price": itemData.price,

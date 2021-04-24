@@ -35,7 +35,7 @@ class StoreViewController: UIViewController {
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid.description
     //pull items where uid matches logged in user
-        db.collection("items").whereField("uid", isEqualTo: uid!)
+        db.collection("items")
         .getDocuments() { [self] (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -56,6 +56,7 @@ class StoreViewController: UIViewController {
                     var picId = doc.get("image") as! String
                     var numSold = doc.get("numSold") as! Int
                     var sellerName = doc.get("sellerName") as! String
+                    var userID = doc.get("uid") as! String
                     
                     //loading image and storing
                     var picURL:URL = URL(string: picId)!
@@ -73,7 +74,7 @@ class StoreViewController: UIViewController {
                     }
                         
                     }
-                    storeItems.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName))
+                    storeItems.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: userID, id: id, picId: picId, sellerName: sellerName))
                     
                     self.tableViewOutlet.reloadData()//reload tableView to populate data
                 }

@@ -93,4 +93,24 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {//swipe action = delete
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {//delete from table
+            tableView.beginUpdates()
+            
+            let db = Firestore.firestore()//delete data from database
+            db.collection("account").document(uid!)
+                .collection("saved").document(items[indexPath.row].id).delete()
+            
+            
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            tableView.endUpdates()
+        }
+    }
+    
 }

@@ -129,7 +129,6 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             let tags = tagsText.text
             
             let imageURL = urlString
-            print("printing\(urlString)")
             let uid = Auth.auth().currentUser?.uid.description
             let sold:Int = 0
             let db = Firestore.firestore()

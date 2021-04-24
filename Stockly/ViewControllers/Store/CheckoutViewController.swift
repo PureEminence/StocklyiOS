@@ -37,6 +37,7 @@ class CheckoutViewController: UIViewController {
     var tax: String!
     var total: String!
     var cartItems = [CartItem]()
+    var storeName: String!
     
     let uid = Auth.auth().currentUser?.uid.description
     let db = Firestore.firestore()
@@ -105,7 +106,9 @@ class CheckoutViewController: UIViewController {
     }
     
     
-    func getCartandPlaceOrder() {//get cart details from db and store purchase in DB
+    func getCartandPlaceOrder() {
+        //get cart details from db and store purchase in DB
+        
         
         //pulling cart items
         db.collection("account").document(uid!)
@@ -130,17 +133,17 @@ class CheckoutViewController: UIViewController {
                     var quantity = doc.get("numInCart") as! Int
                     var salePrice = doc.get("salePrice") as! Int
                     var picURL:URL = URL(string: picId)!
-                
+                    var userID = doc.get("uid") as! String
                     
-                    cartItems.append(CartItem(name: name, currentStock: currentStock, desc: desc, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName,quantity: quantity))
+                    cartItems.append(CartItem(name: name, currentStock: currentStock, desc: desc, price: price, tags: tags, dateAdded: dateAdded, uid: userID, id: id, picId: picId, sellerName: sellerName,quantity: quantity))
                     
                 }
-                //setting purchases DB
                 
+                //setup data for db
                 let totalC = Float(totalText.text!)
                 let cartTotal = String(format: "%.2f", totalC!)
-                print(cartTotal)
-                for i in 0...cartItems.count-1 {//inserts data for each item in cart
+                for i in 0...cartItems.count-1 {
+                    //inserts data for each item in cart
                 let insertData:[String: Any] = [
                     "name": cartItems[i].name,
                     "price": cartItems[i].price,
@@ -155,13 +158,26 @@ class CheckoutViewController: UIViewController {
                     "sellerName": cartItems[i].sellerName
                 ]
                     
+                    let docRef = db.collection("account").document(uid!)
                     
-                    db.collection("account").document(uid!)
-                        .collection("purchases").document(orderID)
-                        .setData(["numOfItems" : cartItems.count, "cartTotal": cartTotal, "purchaseDate": Date(),"shipName": shipNameText.text, "addressL1": shipAddress1Text.text, "addressL2": shipAddress2Text.text, "shipCity": shipCity.text, "shipState": shipState.text, "shipZip": shipZip.text])
-                    db.collection("account").document(uid!)
-                        .collection("purchases").document(orderID)
-                        .collection("itemsPurchased").addDocument(data: insertData)
+                    docRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                            storeName = document.get("storeName") as! String
+                            print("Document data: \(dataDescription)")
+                        } else {
+                            print("Document does not exist")
+                        }
+                    
+                    
+                    
+                    //create transaction
+                    db.collection("transactions").document(orderID)
+                        .setData(["numOfItems" : cartItems.count, "cartTotal": cartTotal, "purchaseDate": Date(),"shipName": shipNameText.text!, "addressL1": shipAddress1Text.text!, "addressL2": shipAddress2Text.text!, "shipCity": shipCity.text!, "shipState": shipState.text!, "shipZip": shipZip.text!, "uid": uid!, "buyerName": storeName!])
+                    //insert transaction items
+                    db.collection("transactions").document(orderID)
+                        .collection("transItems").addDocument(data: insertData)
+                    }
                 }
             }
         }
@@ -182,6 +198,11 @@ class CheckoutViewController: UIViewController {
             db.collection("account").document(uid!)
                 .collection("cart").document("CartID")
                 .collection("cart_items").document(docIDs[j]).delete()
+            
+                //edit stock
+                db.collection("items").document(docIDs[j])
+                    .updateData(["currentStock" : cartItems[j].currentStock - cartItems[j].quantity, "numSold": +cartItems[j].quantity])
+                
             }
         }
     } // ------------- end db pull

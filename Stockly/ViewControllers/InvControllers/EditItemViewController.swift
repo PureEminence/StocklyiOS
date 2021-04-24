@@ -30,15 +30,11 @@ class EditItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
-        //sets outlets to itemData from InvVC
-        //convert firebase timestamp to date time
-        let dateVal = itemData.dateAdded.dateValue()
-        let dF = DateFormatter()
-        dF.dateFormat = "MM/DD/YY, hh:mm"
+        var date = itemData.dateAdded.dateValue().description
         errorMessageText.text = errorMessage
         itemImageView.image = image
         soldNumText.text = String(itemData.numSold)
-        dateAddedText.text = dF.string(from: dateVal)
+        dateAddedText.text = String(date.dropLast(5))
         stockNumText.text = String(itemData.currentStock)
         updateNameText.text = itemData.name
         updatePriceText.text = String(itemData.price)

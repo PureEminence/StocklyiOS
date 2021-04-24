@@ -60,7 +60,8 @@ class CartViewController: UIViewController {
                     var quantity = doc.get("numInCart") as! Int
                     var salePrice = doc.get("salePrice") as! Int
                     var picURL:URL = URL(string: picId)!
-                
+                    var userID = doc.get("uid") as! String
+                    
                     if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
                         let imageData:NSData = NSData(contentsOf: picURL)!
                         let image = UIImage(data: imageData as Data)
@@ -76,7 +77,7 @@ class CartViewController: UIViewController {
                     }
                     total = total + salePrice
                     itemTotal = itemTotal + quantity
-                    cartItems.append(CartItem(name: name, currentStock: currentStock, desc: desc, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName,quantity: quantity))
+                    cartItems.append(CartItem(name: name, currentStock: currentStock, desc: desc, price: price, tags: tags, dateAdded: dateAdded, uid: userID, id: id, picId: picId, sellerName: sellerName,quantity: quantity))
                     
                     self.tableView.reloadData()//reload tableView to populate data
                 }

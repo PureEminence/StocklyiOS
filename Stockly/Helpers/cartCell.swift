@@ -17,6 +17,7 @@ class cartCell: UITableViewCell {
     @IBOutlet weak var quantityText: UILabel!
     @IBOutlet weak var priceText: UILabel!
     @IBOutlet weak var nameText: UILabel!
+    @IBOutlet weak var savedText: UILabel!
     
     var picID: String!
     var itemID: String!
@@ -38,6 +39,8 @@ class cartCell: UITableViewCell {
         db.collection("account").document(uid!)
             .collection("saved").document(itemID)
             .setData(insertData)
+        
+        savedText.alpha = 1
     }
     
     
