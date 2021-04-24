@@ -50,6 +50,11 @@
 		C9E910912633C06E0095CCD6 /* savedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910902633C06E0095CCD6 /* savedCell.swift */; };
 		C9E910982633CB440095CCD6 /* SavedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910972633CB440095CCD6 /* SavedItem.swift */; };
 		C9E9109C2633D7AD0095CCD6 /* recentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9109B2633D7AD0095CCD6 /* recentCell.swift */; };
+		C9E9109F2633E14E0095CCD6 /* purchasesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9109E2633E14E0095CCD6 /* purchasesCell.swift */; };
+		C9E910AC2633E80C0095CCD6 /* PurItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910AB2633E80C0095CCD6 /* PurItem.swift */; };
+		C9E910AF2633EEB60095CCD6 /* purchaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910AE2633EEB60095CCD6 /* purchaseCell.swift */; };
+		C9E910B22633EEF90095CCD6 /* PurCItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910B12633EEF90095CCD6 /* PurCItem.swift */; };
+		C9E910B52633FD7B0095CCD6 /* PurchaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +105,11 @@
 		C9E910902633C06E0095CCD6 /* savedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedCell.swift; sourceTree = "<group>"; };
 		C9E910972633CB440095CCD6 /* SavedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItem.swift; sourceTree = "<group>"; };
 		C9E9109B2633D7AD0095CCD6 /* recentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recentCell.swift; sourceTree = "<group>"; };
+		C9E9109E2633E14E0095CCD6 /* purchasesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purchasesCell.swift; sourceTree = "<group>"; };
+		C9E910AB2633E80C0095CCD6 /* PurItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurItem.swift; sourceTree = "<group>"; };
+		C9E910AE2633EEB60095CCD6 /* purchaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = purchaseCell.swift; sourceTree = "<group>"; };
+		C9E910B12633EEF90095CCD6 /* PurCItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurCItem.swift; sourceTree = "<group>"; };
+		C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +174,9 @@
 				C93064642623A24D00A3A837 /* Assets.xcassets */,
 				C93064662623A24D00A3A837 /* LaunchScreen.storyboard */,
 				C93064692623A24D00A3A837 /* Info.plist */,
+				C9E910AB2633E80C0095CCD6 /* PurItem.swift */,
+				C9E910B12633EEF90095CCD6 /* PurCItem.swift */,
+				C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */,
 			);
 			path = Stockly;
 			sourceTree = "<group>";
@@ -191,6 +204,8 @@
 				C9E910842632995A0095CCD6 /* cartCell.swift */,
 				C9E910902633C06E0095CCD6 /* savedCell.swift */,
 				C9E9109B2633D7AD0095CCD6 /* recentCell.swift */,
+				C9E9109E2633E14E0095CCD6 /* purchasesCell.swift */,
+				C9E910AE2633EEB60095CCD6 /* purchaseCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -378,7 +393,9 @@
 				C93064602623A24C00A3A837 /* ViewController.swift in Sources */,
 				C9E910852632995A0095CCD6 /* cartCell.swift in Sources */,
 				C9E8B085262E5E7600DBB0ED /* StoreItemViewController.swift in Sources */,
+				C9E9109F2633E14E0095CCD6 /* purchasesCell.swift in Sources */,
 				C96DD2EA262407E800DB0F72 /* Utilities.swift in Sources */,
+				C9E910AF2633EEB60095CCD6 /* purchaseCell.swift in Sources */,
 				C9E8B095262E5F7400DBB0ED /* DashboardViewController.swift in Sources */,
 				C960813F2627DB7E00A0C4D2 /* Item.swift in Sources */,
 				C9E910982633CB440095CCD6 /* SavedItem.swift in Sources */,
@@ -386,6 +403,7 @@
 				C960813C2627D84700A0C4D2 /* itemCell.swift in Sources */,
 				C9E8B09C262E5FBE00DBB0ED /* SavedViewController.swift in Sources */,
 				C9E910912633C06E0095CCD6 /* savedCell.swift in Sources */,
+				C9E910B22633EEF90095CCD6 /* PurCItem.swift in Sources */,
 				C9E9108D2632A1AC0095CCD6 /* CartItem.swift in Sources */,
 				C930645C2623A24C00A3A837 /* AppDelegate.swift in Sources */,
 				C9E8B09F262E5FF500DBB0ED /* MessagesViewController.swift in Sources */,
@@ -406,7 +424,9 @@
 				C9E8B0A2262E601800DBB0ED /* SalesViewController.swift in Sources */,
 				C9E8B081262E5E4300DBB0ED /* StoreViewController.swift in Sources */,
 				C96DD2ED26242FB600DB0F72 /* Constants.swift in Sources */,
+				C9E910B52633FD7B0095CCD6 /* PurchaseItem.swift in Sources */,
 				C96DD30C2626045100DB0F72 /* ProfileEditViewController.swift in Sources */,
+				C9E910AC2633E80C0095CCD6 /* PurItem.swift in Sources */,
 				C96DD2FE262569D000DB0F72 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

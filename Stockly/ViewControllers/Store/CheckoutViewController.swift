@@ -44,9 +44,9 @@ class CheckoutViewController: UIViewController {
     var orderID = ""
     
     override func viewDidLoad() {
-        orderID = uid!.appending(ranNum)
         super.viewDidLoad()
-
+        
+        orderID = uid!.suffix(5).appending(ranNum)
         subtotalText.text = String(subtotal)
         shippingText.text = String(shipping)
         taxText.text = String(tax)

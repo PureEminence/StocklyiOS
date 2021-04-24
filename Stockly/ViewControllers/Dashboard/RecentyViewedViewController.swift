@@ -92,4 +92,5 @@ class RecentyViewedViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    
 }
