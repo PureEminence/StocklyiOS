@@ -113,6 +113,20 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
             var itemsData = storeItems[indexPath.row]
             vc.itemData = itemsData
             
+            var docData:[String: Any] = [
+                "name": itemsData.name,
+                "price": itemsData.price,
+                "seller": itemsData.sellerName,
+                "stock": itemsData.currentStock,
+                "date": Date(),
+                "image": itemsData.picId
+                
+            ]
+            
+            let db = Firestore.firestore()
+            db.collection("account").document(uid!)
+                .collection("recentlyViewed").document(itemsData.id)
+                .setData(docData)
             
             self.navigationController?.pushViewController(vc, animated: true)
         }

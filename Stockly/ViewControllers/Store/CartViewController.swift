@@ -22,6 +22,7 @@ class CartViewController: UIViewController {
     var cartItems = [CartItem]()
     var total:Int = 0
     var itemTotal:Int = 0
+    var deleteItem:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,7 +50,6 @@ class CartViewController: UIViewController {
                     //pulling instance data from document and store in items
                     var id = doc.documentID
                     var name = doc.get("name") as! String
-                    var costPer = doc.get("price") as! Int
                     var currentStock = doc.get("currentStock") as! Int
                     var desc = doc.get("desc") as! String
                     var price = doc.get("price") as! Int
@@ -76,7 +76,7 @@ class CartViewController: UIViewController {
                     }
                     total = total + salePrice
                     itemTotal = itemTotal + quantity
-                    cartItems.append(CartItem(name: name, costPer: costPer, currentStock: currentStock, desc: desc, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName,quantity: quantity))
+                    cartItems.append(CartItem(name: name, currentStock: currentStock, desc: desc, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName,quantity: quantity))
                     
                     self.tableView.reloadData()//reload tableView to populate data
                 }
@@ -86,6 +86,25 @@ class CartViewController: UIViewController {
 
         }
     } // -------------------------------------------- end db pull
+    
+    
+    @IBAction func toCheckout(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as? CheckoutViewController {
+            var shippingCost:Int = 10
+            var total = Int(orderTotalText.text!)
+            if(total!>100) {
+                shippingCost = 0
+            }
+            var tax = Float(total!) * 0.07
+            
+            vc.subtotal = String(total!)
+            vc.shipping = String(shippingCost)
+            vc.tax = String(tax)
+            vc.total = String(Float(tax)+Float(total!)+Float(shippingCost))
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
 }
 
@@ -106,13 +125,35 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
 
         cell.imageC.image = pictures[indexPath.row]
         cell.setItem(item: item)
-
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {//swipe action = delete
+        return .delete
+    }
     
-        
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {//delete from table
+            tableView.beginUpdates()
+            
+            let db = Firestore.firestore()//delete data from database
+            db.collection("account").document(uid!)
+                .collection("cart").document("CartID")
+                .collection("cart_items").document(cartItems[indexPath.row].id).delete()
+            
+            var price = cartItems[indexPath.row].price * cartItems[indexPath.row].quantity
+            orderTotalText.text = String(Int(orderTotalText.text!)! - price) //update order total
+          
+            itemsTotalText.text = String(Int(itemsTotalText.text!)! - cartItems[indexPath.row].quantity)//update items total
+            
+            cartItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            tableView.endUpdates()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
     
 }

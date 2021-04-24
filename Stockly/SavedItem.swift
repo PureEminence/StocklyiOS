@@ -1,5 +1,5 @@
 //
-//  CartItem.swift
+//  SavedItem.swift
 //  Stockly
 //
 //  Created by Matt Owen on 4/23/21.
@@ -10,46 +10,34 @@ import Foundation
 import UIKit
 import Firebase
 
-class CartItem {
+class SavedItem {
     
     
         var name: String
-        var currentStock: Int
-        var desc: String
-        var price: Int
-        var tags: String
+        var currentStock: String
+        var price: String
         var dateAdded: Timestamp
-        var uid: String
         var id: String
         var picId: String
         var sellerName: String
-        var quantity: Int
 
     
     init(name: String,
-         currentStock: Int,
-         desc: String,
-         price: Int,
-         tags: String,
+         currentStock: String,
+         price: String,
          dateAdded: Timestamp,
-         uid: String,
          id: String,
          picId: String,
-         sellerName: String,
-         quantity: Int ) {
+         sellerName: String) {
         
         
         self.name = name
         self.currentStock = currentStock
-        self.desc = desc
         self.price = price
-        self.tags = tags
         self.dateAdded = dateAdded
-        self.uid = uid
         self.id = id
         self.picId = picId
         self.sellerName = sellerName
-        self.quantity = quantity
     }
     
 }

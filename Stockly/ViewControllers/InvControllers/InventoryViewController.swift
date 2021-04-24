@@ -14,10 +14,7 @@ class InventoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     let uid = Auth.auth().currentUser?.uid.description
-
-    var itemCount = 0
     var pictures = [UIImage]()
-    var placeholderImage = UIImage(named: "loadingPicture")
     var items = [Item]()
   
     override func viewDidLoad() { //View Loading begins
@@ -41,9 +38,6 @@ class InventoryViewController: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                 for doc in querySnapshot!.documents {
-                    itemCount+=1
-                    
-
                     //pulling instance data from document and store in items
                     var id = doc.documentID
                     var name = doc.get("name") as! String
@@ -57,7 +51,6 @@ class InventoryViewController: UIViewController {
                     var numSold = doc.get("numSold") as! Int
                     var sellerName = doc.get("sellerName") as! String
                     
-                    print("Pic ID is \(picId)")
                     
                     //loading image and storing
                     if picId == "" {
@@ -120,14 +113,25 @@ extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
-       
-        
-        
-    
-        
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {//swipe action = delete
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {//delete from table
+            tableView.beginUpdates()
+            
+            let db = Firestore.firestore()//delete data from database
+            db.collection("items").document(items[indexPath.row].id).delete()
+            
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left)
+            
+            tableView.endUpdates()
+        }
+    }
 }
 
 

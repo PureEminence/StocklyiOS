@@ -7,23 +7,32 @@
 
 import UIKit
 
-class UserStoreViewController: ViewController {
+class UserStoreViewController: UIViewController {
 
+    
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var joinDateText: UILabel!
+    @IBOutlet weak var nameText: UILabel!
+    @IBOutlet weak var bioText: UILabel!
+    @IBOutlet weak var taglineText: UILabel!
+    
+    
+    var name: String!
+    var bio: String!
+    var tagline: String!
+    var joinDate: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        nameText.text = name
+        bioText.text = bio
+        taglineText.text = tagline
+        joinDateText.text = joinDate
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    //TODO: Database pull for items for sale and link up with store VC search
+    
 
 }

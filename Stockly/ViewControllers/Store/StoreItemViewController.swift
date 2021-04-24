@@ -32,13 +32,13 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var pickNum: Int!
     var pickerNumbers = [Int]()
     var pickerNum: Int!
-   
+    var itemID: String!
     
     override func viewDidLoad() {
         addedtoCartText.alpha = 0 //hide till needed
         super.viewDidLoad()
-        dump(itemData)
         //gets vars from itemData and sets to view texts
+        itemID = itemData.id
         itemNameText.text = itemData.name
         priceText.text = String(itemData.price)
         inStockText.text = String(itemData.currentStock)
@@ -84,7 +84,8 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             
         db.collection("account").document(uid!)
             .collection("cart").document("CartID")
-            .collection("cart_items").addDocument(data: insertData)
+            .collection("cart_items").document(itemID)
+            .setData(insertData)
         
         addedtoCartText.text = "Added \(numItems) items to the cart"
         addedtoCartText.alpha = 1

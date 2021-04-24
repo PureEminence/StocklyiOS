@@ -47,6 +47,9 @@
 		C9E91082263244780095CCD6 /* storeItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E91081263244780095CCD6 /* storeItemViewCell.swift */; };
 		C9E910852632995A0095CCD6 /* cartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910842632995A0095CCD6 /* cartCell.swift */; };
 		C9E9108D2632A1AC0095CCD6 /* CartItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9108C2632A1AC0095CCD6 /* CartItem.swift */; };
+		C9E910912633C06E0095CCD6 /* savedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910902633C06E0095CCD6 /* savedCell.swift */; };
+		C9E910982633CB440095CCD6 /* SavedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910972633CB440095CCD6 /* SavedItem.swift */; };
+		C9E9109C2633D7AD0095CCD6 /* recentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9109B2633D7AD0095CCD6 /* recentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +97,9 @@
 		C9E91081263244780095CCD6 /* storeItemViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = storeItemViewCell.swift; sourceTree = "<group>"; };
 		C9E910842632995A0095CCD6 /* cartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartCell.swift; sourceTree = "<group>"; };
 		C9E9108C2632A1AC0095CCD6 /* CartItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItem.swift; sourceTree = "<group>"; };
+		C9E910902633C06E0095CCD6 /* savedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedCell.swift; sourceTree = "<group>"; };
+		C9E910972633CB440095CCD6 /* SavedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedItem.swift; sourceTree = "<group>"; };
+		C9E9109B2633D7AD0095CCD6 /* recentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +152,7 @@
 		C930645A2623A24C00A3A837 /* Stockly */ = {
 			isa = PBXGroup;
 			children = (
+				C9E910972633CB440095CCD6 /* SavedItem.swift */,
 				C960813E2627DB7E00A0C4D2 /* Item.swift */,
 				C9E9108C2632A1AC0095CCD6 /* CartItem.swift */,
 				C93064762623A27E00A3A837 /* ViewControllers */,
@@ -182,6 +189,8 @@
 				C960813B2627D84700A0C4D2 /* itemCell.swift */,
 				C9E91081263244780095CCD6 /* storeItemViewCell.swift */,
 				C9E910842632995A0095CCD6 /* cartCell.swift */,
+				C9E910902633C06E0095CCD6 /* savedCell.swift */,
+				C9E9109B2633D7AD0095CCD6 /* recentCell.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -363,6 +372,7 @@
 			files = (
 				C9E8B07C262E5E0700DBB0ED /* EditItemViewController.swift in Sources */,
 				C93064712623A26A00A3A837 /* LoginViewController.swift in Sources */,
+				C9E9109C2633D7AD0095CCD6 /* recentCell.swift in Sources */,
 				C96DD309262582A800DB0F72 /* InventoryViewController.swift in Sources */,
 				C9E8B0B9262E76E200DBB0ED /* UserStoreViewController.swift in Sources */,
 				C93064602623A24C00A3A837 /* ViewController.swift in Sources */,
@@ -371,9 +381,11 @@
 				C96DD2EA262407E800DB0F72 /* Utilities.swift in Sources */,
 				C9E8B095262E5F7400DBB0ED /* DashboardViewController.swift in Sources */,
 				C960813F2627DB7E00A0C4D2 /* Item.swift in Sources */,
+				C9E910982633CB440095CCD6 /* SavedItem.swift in Sources */,
 				C9E8B0AB262E606D00DBB0ED /* PurchaseViewController.swift in Sources */,
 				C960813C2627D84700A0C4D2 /* itemCell.swift in Sources */,
 				C9E8B09C262E5FBE00DBB0ED /* SavedViewController.swift in Sources */,
+				C9E910912633C06E0095CCD6 /* savedCell.swift in Sources */,
 				C9E9108D2632A1AC0095CCD6 /* CartItem.swift in Sources */,
 				C930645C2623A24C00A3A837 /* AppDelegate.swift in Sources */,
 				C9E8B09F262E5FF500DBB0ED /* MessagesViewController.swift in Sources */,
