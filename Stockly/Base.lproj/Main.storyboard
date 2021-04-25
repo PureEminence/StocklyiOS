@@ -358,9 +358,6 @@
                                                 <state key="normal" title="Messages">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
-                                                <connections>
-                                                    <segue destination="Eg0-bd-Vq8" kind="show" id="3Xu-bT-cyH"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -894,11 +891,21 @@
         <!--Messages-->
         <scene sceneID="zPr-s0-05G">
             <objects>
-                <viewController storyboardIdentifier="MessagesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Eg0-bd-Vq8" customClass="MessagesViewController" customModule="Stockly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessagesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Eg0-bd-Vq8" customClass="MessagingViewController" customModule="Stockly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gnw-6W-keN">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Conversations!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IVO-cG-2MR">
+                                <rect key="frame" x="104" y="450.66666666666669" width="220" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="5YY-rI-8xf"/>
+                                    <constraint firstAttribute="height" constant="25" id="CV1-do-3nC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Eva-jn-MhB">
                                 <rect key="frame" x="0.0" y="88" width="428" height="44"/>
                                 <constraints>
@@ -953,10 +960,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="messageImage" destination="M46-8x-Gn9" id="mLk-4j-pVv"/>
-                                            <outlet property="messageText" destination="R9N-Ef-Q1s" id="AyJ-Sc-KcW"/>
-                                            <outlet property="nameText" destination="F60-aB-Mwe" id="Mqj-7V-fvY"/>
-                                            <segue destination="Qsf-VJ-g46" kind="show" id="SZI-LS-HtX"/>
+                                            <outlet property="imageOut" destination="M46-8x-Gn9" id="Sdx-NK-fht"/>
+                                            <outlet property="messageText" destination="R9N-Ef-Q1s" id="LtI-qa-SPM"/>
+                                            <outlet property="nameText" destination="F60-aB-Mwe" id="nd7-sW-YbV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -966,7 +972,9 @@
                         <color key="backgroundColor" red="0.46842531126800629" green="0.59029833447963809" blue="0.7693973183631897" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="TW6-KP-ZLy" firstAttribute="leading" secondItem="flj-rd-QTc" secondAttribute="leading" id="1wk-zp-UwD"/>
+                            <constraint firstItem="IVO-cG-2MR" firstAttribute="centerY" secondItem="gnw-6W-keN" secondAttribute="centerY" id="Cwv-Z1-frt"/>
                             <constraint firstItem="Eva-jn-MhB" firstAttribute="top" secondItem="flj-rd-QTc" secondAttribute="top" id="DeB-pi-qdd"/>
+                            <constraint firstItem="IVO-cG-2MR" firstAttribute="centerX" secondItem="gnw-6W-keN" secondAttribute="centerX" id="GQ3-lr-jbC"/>
                             <constraint firstItem="TW6-KP-ZLy" firstAttribute="top" secondItem="Eva-jn-MhB" secondAttribute="bottom" id="cCf-ma-DAQ"/>
                             <constraint firstItem="flj-rd-QTc" firstAttribute="bottom" secondItem="TW6-KP-ZLy" secondAttribute="bottom" id="eBm-19-fuy"/>
                             <constraint firstItem="Eva-jn-MhB" firstAttribute="trailing" secondItem="flj-rd-QTc" secondAttribute="trailing" id="lLk-EA-6Qu"/>
@@ -974,14 +982,26 @@
                             <constraint firstItem="Eva-jn-MhB" firstAttribute="leading" secondItem="flj-rd-QTc" secondAttribute="leading" id="pgL-Km-DQS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Messages" id="4oU-Y1-wxV"/>
+                    <navigationItem key="navigationItem" title="Messages" id="4oU-Y1-wxV">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ZBb-gy-Kyf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OCP-UR-TBD">
+                                <rect key="frame" x="333" y="11" width="75" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <state key="normal" title="Button" image="square.and.pencil" catalog="system"/>
+                                <connections>
+                                    <action selector="newMessageButton:" destination="Eg0-bd-Vq8" eventType="touchUpInside" id="5Mm-iV-ats"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="TW6-KP-ZLy" id="wLN-0S-NIp"/>
+                        <outlet property="tableView" destination="TW6-KP-ZLy" id="UgM-sM-fKZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0C6-Bo-non" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5841" y="1459"/>
+            <point key="canvasLocation" x="3598.5981308411215" y="1649.6760259179266"/>
         </scene>
         <!--Analytics-->
         <scene sceneID="VHJ-LM-K0e">
@@ -1055,23 +1075,73 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZf-av-50v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5840.1869158878499" y="2120.086393088553"/>
+            <point key="canvasLocation" x="6738.7850467289718" y="1467.6025917926568"/>
         </scene>
-        <!--View Controller-->
+        <!--New Message-->
         <scene sceneID="l0j-oJ-ADE">
             <objects>
-                <viewController id="Qsf-VJ-g46" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewMessageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qsf-VJ-g46" customClass="NewMessageViewController" customModule="Stockly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kHE-V8-XU0">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C82-nM-5Hd">
+                                <rect key="frame" x="0.0" y="100" width="428" height="792"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserSearchResultCell" id="cBl-5w-Z3S" customClass="UserSearchResultCell" customModule="Stockly" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="428" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cBl-5w-Z3S" id="9O4-Bh-9Ye">
+                                            <rect key="frame" x="0.0" y="0.0" width="428" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyA-Ff-AwD">
+                                                    <rect key="frame" x="24" y="13" width="380" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zyA-Ff-AwD" firstAttribute="top" secondItem="9O4-Bh-9Ye" secondAttribute="topMargin" constant="2" id="5mC-wS-AST"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="zyA-Ff-AwD" secondAttribute="bottom" constant="2" id="Wvf-9a-cbU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="zyA-Ff-AwD" secondAttribute="trailing" constant="4" id="apK-G9-KyD"/>
+                                                <constraint firstItem="zyA-Ff-AwD" firstAttribute="leading" secondItem="9O4-Bh-9Ye" secondAttribute="leadingMargin" constant="4" id="dtR-l5-8uH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="userStoreNameText" destination="zyA-Ff-AwD" id="cgN-bb-vjx"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="Search for a user..." translatesAutoresizingMaskIntoConstraints="NO" id="Wia-k0-cPm">
+                                <rect key="frame" x="0.0" y="44" width="428" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="okQ-Ma-TTe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Wia-k0-cPm" firstAttribute="top" secondItem="okQ-Ma-TTe" secondAttribute="top" id="RIh-Sm-aDp"/>
+                            <constraint firstItem="Wia-k0-cPm" firstAttribute="leading" secondItem="kHE-V8-XU0" secondAttribute="leading" id="TGr-ZN-Dpd"/>
+                            <constraint firstItem="C82-nM-5Hd" firstAttribute="leading" secondItem="okQ-Ma-TTe" secondAttribute="leading" id="TYw-2J-ZO7"/>
+                            <constraint firstItem="C82-nM-5Hd" firstAttribute="top" secondItem="Wia-k0-cPm" secondAttribute="bottom" id="Y2D-wg-Wfh"/>
+                            <constraint firstAttribute="trailing" secondItem="Wia-k0-cPm" secondAttribute="trailing" id="Z8A-MK-Rud"/>
+                            <constraint firstItem="okQ-Ma-TTe" firstAttribute="trailing" secondItem="C82-nM-5Hd" secondAttribute="trailing" id="cAx-Yj-8p7"/>
+                            <constraint firstItem="okQ-Ma-TTe" firstAttribute="bottom" secondItem="C82-nM-5Hd" secondAttribute="bottom" id="qGq-Ra-O8W"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xgW-A2-OeO"/>
+                    <navigationItem key="navigationItem" title="New Message" id="xgW-A2-OeO"/>
+                    <connections>
+                        <outlet property="searchBar" destination="Wia-k0-cPm" id="P0a-FZ-Mz7"/>
+                        <outlet property="tableView" destination="C82-nM-5Hd" id="e6o-px-hFk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pW9-xA-RMQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6551" y="1463"/>
+            <point key="canvasLocation" x="4261.6822429906542" y="1649.6760259179266"/>
         </scene>
         <!--Recently Viewed-->
         <scene sceneID="c3s-ci-uh0">
@@ -1529,7 +1599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BUy-zB-nTV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2069.5652173913045" y="1761.8303571428571"/>
+            <point key="canvasLocation" x="317" y="1650"/>
         </scene>
         <!--Edit Profile-->
         <scene sceneID="YhZ-Tw-ItU">
@@ -1648,7 +1718,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i1g-iB-pxr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2792.753623188406" y="1761.8303571428571"/>
+            <point key="canvasLocation" x="994" y="1650"/>
         </scene>
         <!--Purchases-->
         <scene sceneID="F6M-39-sGK">
@@ -4126,6 +4196,7 @@
                         <segue destination="cgW-6C-1S2" kind="relationship" relationship="viewControllers" id="f7R-xA-kA5"/>
                         <segue destination="WOP-5W-SqX" kind="relationship" relationship="viewControllers" id="kVy-bP-ibt"/>
                         <segue destination="F5b-h3-HcI" kind="relationship" relationship="viewControllers" id="Pn3-4r-J6v"/>
+                        <segue destination="7q1-Cw-mXt" kind="relationship" relationship="viewControllers" id="phV-C7-FnD"/>
                         <segue destination="CjZ-ph-MjI" kind="relationship" relationship="viewControllers" id="vS5-Dn-NmR"/>
                     </connections>
                 </tabBarController>
@@ -4207,7 +4278,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNP-pg-zPf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1255" y="1762"/>
+            <point key="canvasLocation" x="-405" y="1650"/>
+        </scene>
+        <!--Messages-->
+        <scene sceneID="7q0-pW-xCk">
+            <objects>
+                <navigationController title="Messages" automaticallyAdjustsScrollViewInsets="NO" id="7q1-Cw-mXt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Messages" image="message.fill" catalog="system" id="XiE-VW-NxM"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c8M-L9-Agx">
+                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Eg0-bd-Vq8" kind="relationship" relationship="rootViewController" id="MKx-gm-ehQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Seu-K6-55g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2698.5981308411215" y="1649.6760259179266"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -4218,9 +4308,11 @@
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="list.triangle" catalog="system" width="128" height="91"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="plus.app.fill" catalog="system" width="128" height="114"/>
         <image name="rectangle.grid.2x2" catalog="system" width="128" height="99"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="tag.circle" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
