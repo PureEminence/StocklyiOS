@@ -71,14 +71,13 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         super.viewDidLoad()
         
         
-        print(getMessageID())
+        
         
         messagesCollectionView.messagesDataSource = self 
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
         
-        print(currentSender())
         
     }
     

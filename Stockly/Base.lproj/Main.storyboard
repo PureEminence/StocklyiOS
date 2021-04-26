@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CZF-cg-xBf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wtA-5q-ZMw">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -994,16 +994,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKj-N3-ufa">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="68"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# total items sold" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sl-qd-s4t">
-                                                <rect key="frame" x="36" y="8" width="356" height="21"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="21" id="CDp-dO-wL0"/>
-                                                    <constraint firstAttribute="width" constant="356" id="UyL-wn-bNE"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top sellers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-CP-dev">
                                                 <rect key="frame" x="36" y="47" width="107" height="21"/>
                                                 <constraints>
@@ -1019,8 +1009,6 @@
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="Srt-CP-dev" secondAttribute="bottom" id="9go-Kv-ehz"/>
                                             <constraint firstItem="Srt-CP-dev" firstAttribute="leading" secondItem="rKj-N3-ufa" secondAttribute="leading" constant="36" id="Ko7-hD-w1d"/>
-                                            <constraint firstAttribute="bottom" secondItem="7Sl-qd-s4t" secondAttribute="bottom" constant="39" id="qlU-sn-wzD"/>
-                                            <constraint firstItem="7Sl-qd-s4t" firstAttribute="leading" secondItem="rKj-N3-ufa" secondAttribute="leading" constant="36" id="vUM-oG-eFH"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oPs-6J-0Wa">

@@ -24,6 +24,7 @@ final class DatabaseHelper {
         
         let messageDate = firstMessage.sentDate
        
+        print("other ID \(otherUserID)")
         //get message from firstmessage and deal with message cases
         var message = ""
         switch firstMessage.kind {
@@ -51,8 +52,9 @@ final class DatabaseHelper {
         
         //data handler for db insert
         let newConvData: [String: Any] = [
+            "id": uid,
             "otherUserID": otherUserID,
-            "name": firstMessage.sender.displayName,
+            "name": "self",
             "latestMessage": [
                 "id": firstMessage.messageId,
                 "date": messageDate,
@@ -62,7 +64,8 @@ final class DatabaseHelper {
         ]
         
         let otherNewConvData: [String: Any] = [
-            "otherUserID": displayName!,
+            "id": otherUserID,
+            "otherUserID": uid,
             "name": firstMessage.sender.displayName,
             "latestMessage": [
                 "id": firstMessage.messageId,
@@ -96,7 +99,7 @@ final class DatabaseHelper {
                 if let err = err {
                     print("Error getting documents: \(err)")
                 
-                } else {
+                } else {//if snapshot is empty create new doc
                     if querySnapshot!.isEmpty {
                         docRef.collection("conversations").document(otherUserID)
                             .setData(newConvData)
@@ -112,6 +115,34 @@ final class DatabaseHelper {
                     }
                 }
             }
+        
+        //adds convo to other user db
+        print("Other user id \(otherUserID)")
+        let otherDocRef = db.collection("account").document(otherUserID)
+            otherDocRef.collection("conversations").whereField("otherUserID", isEqualTo: uid)
+            .getDocuments() { [self] (snap, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                
+                } else { //if snapshot is empty create new doc
+                    if snap!.isEmpty {
+                        otherDocRef.collection("conversations").document(uid)
+                            .setData(otherNewConvData)
+                        otherDocRef.collection("conversations").document(uid)
+                            .collection("messages").document(firstMessage.messageId)
+                            .setData(messages)
+                    } else {
+                        //if doc exists add message to messages
+                        otherDocRef.collection("conversations").document(uid)
+                            .collection("messages").document(firstMessage.messageId)
+                            .setData(messages)
+                        otherDocRef.collection("conversations").document(uid).updateData(["latestMessage" : latestMessage])
+                    }
+                }
+            }
+                
+        
+        
     }
     public func getAllConvo(for otherUserID: String, _ completion: @escaping (_ data: [Conversation]) -> Void) { //pull all user convo
         
