@@ -14,4 +14,5 @@ class MessagesCell: UITableViewCell {
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var messageText: UILabel!
     
+    
 }

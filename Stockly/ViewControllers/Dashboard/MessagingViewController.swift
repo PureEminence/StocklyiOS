@@ -8,9 +8,25 @@
 import UIKit
 import Firebase
 
+struct Conversation {
+    let id: String
+    let name: String
+    let otherUserID: String
+    let latestMessage: LatestMessage
+}
+struct LatestMessage{
+    let id: String
+    let date: String
+    let message: String
+    let isRead: Bool
+}
+
 class MessagingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-
+    var conversations = [Conversation]()
+    var messages = [Message]()
+    let uid = Auth.auth().currentUser!.uid
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func newMessageButton(_ sender: UIButton) {//go to create new message
@@ -22,7 +38,7 @@ class MessagingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-    func createNewConversation(result: SearchResults){
+    func createNewConversation(result: SearchResults){//gets search results and push to chat view
         let vc = ChatViewController()
         guard let name = result.storeName, let userID = result.userID else { return }
         vc.title = name
@@ -40,29 +56,63 @@ class MessagingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
-    func getConversations(){
-        
+    func getConversations(){//pull convo's from db
+        DatabaseHelper.shared.getAllConvo(for: uid, { (conversation) in
+            
+                if conversation.isEmpty {
+                    print("No Conversations")
+                    return
+                    }
+                self.conversations = conversation
+                DispatchQueue.main.async {
+                self.tableView.reloadData()
+                }
+        })
     }
     
     
+    func getMessages(otherID: String){ //gets messages from DB
+        DatabaseHelper.shared.getConvMessages(with: otherID, { [weak self] (message) in
+            
+            if message.isEmpty {
+                print("no messages")
+                return
+            }
+            self!.messages = message
+            DispatchQueue.main.async {
+                self!.tableView.reloadData()
+            }
+        })
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return conversations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessagesCell") as! MessagesCell
         
-        cell.nameText.text = "Name"
+        cell.nameText.text = conversations[indexPath.row].name
+        cell.messageText.text = conversations[indexPath.row].latestMessage.message
         
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let vc = ChatViewController()
+        var conversation = conversations[indexPath.row]
+        
+        if vc.isNewConv == false {
+            getMessages(otherID: conversation.otherUserID)
+            vc.messages = messages
+            vc.otherUserID = conversation.otherUserID
+        }
+        
+        vc.conversation.append(conversation)
+        
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

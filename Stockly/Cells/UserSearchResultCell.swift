@@ -9,7 +9,6 @@ import UIKit
 
 class UserSearchResultCell: UITableViewCell {
 
-    
     @IBOutlet weak var userStoreNameText: UILabel!
     
 }

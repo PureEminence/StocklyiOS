@@ -239,7 +239,6 @@
 			children = (
 				C96DD2E9262407E800DB0F72 /* Utilities.swift */,
 				C96DD2EC26242FB600DB0F72 /* Constants.swift */,
-				C944EDCD26352DC000D79ED5 /* DatabaseHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -281,6 +280,10 @@
 		C9E8B093262E5F0400DBB0ED /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				C944EDB92634D2DD00D79ED5 /* ChatViewController.swift */,
+				C944EDBD2634DB1800D79ED5 /* MessagingViewController.swift */,
+				C944EDC52634F9C700D79ED5 /* NewMessageViewController.swift */,
+				C944EDCD26352DC000D79ED5 /* DatabaseHelper.swift */,
 				C9E8B094262E5F7400DBB0ED /* DashboardViewController.swift */,
 				C9E8B098262E5FA600DBB0ED /* PurchasesViewController.swift */,
 				C9E8B09B262E5FBE00DBB0ED /* SavedViewController.swift */,
@@ -289,9 +292,6 @@
 				C9E8B0A7262E605400DBB0ED /* AnalyticsViewController.swift */,
 				C9E8B0AA262E606D00DBB0ED /* PurchaseViewController.swift */,
 				C9E8B0AD262E607600DBB0ED /* SaleViewController.swift */,
-				C944EDB92634D2DD00D79ED5 /* ChatViewController.swift */,
-				C944EDBD2634DB1800D79ED5 /* MessagingViewController.swift */,
-				C944EDC52634F9C700D79ED5 /* NewMessageViewController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";

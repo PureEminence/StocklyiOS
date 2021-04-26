@@ -74,6 +74,20 @@ class SignUpViewController: UIViewController {
                     "email": email,
                     "created": Date()]
                 
+                //add the store name to auth.currentUser
+                let user = Auth.auth().currentUser
+                if let user = user {
+                    let changeRequest = user.createProfileChangeRequest()
+                    changeRequest.displayName = storeName
+                    changeRequest.commitChanges { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            //profile updated
+                        }
+                    }
+                }
+                
                 if error != nil{
                     self.displayError(error: "Error creating account.")
                 }

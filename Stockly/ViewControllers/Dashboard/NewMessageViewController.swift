@@ -39,7 +39,7 @@ class NewMessageViewController: UIViewController, UISearchBarDelegate, UITableVi
     }
 
     
-    func searchUsers(searchText: String) {
+    func searchUsers(searchText: String) {//search users for store name
         
         db.collection("account").whereField("storeName", isEqualTo: searchText).getDocuments() { [self] (querySnapshot, err) in
             if let err = err {
