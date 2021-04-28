@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         getProfileData()
+        
     }
     
 
@@ -38,6 +39,8 @@ class ProfileViewController: UIViewController {
         self.toLoginScreen()
         
     }
+    
+    
     
     func toLoginScreen(){
         let vc = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.viewController) as? ViewController

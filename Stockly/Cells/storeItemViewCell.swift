@@ -14,6 +14,7 @@ class storeItemViewCell: UITableViewCell {
     @IBOutlet weak var displayImage: UIImageView!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var priceText: UILabel!
+    @IBOutlet weak var sellerNameButton: UIButton!
     
     
     @IBAction func saveItemButton(_ sender: Any) {
@@ -22,9 +23,9 @@ class storeItemViewCell: UITableViewCell {
     
     func setItem(item: Item) {
         
-        
+        sellerNameButton.setTitle(item.sellerName, for: .normal)
         nameText.text = item.name
-        priceText.text = String(item.price)
+        priceText.text = "$".appending(String(item.price))
         
     }
     

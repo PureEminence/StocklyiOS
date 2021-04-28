@@ -69,6 +69,7 @@ class StoreViewController: UIViewController {
                     if var data = try? Data(contentsOf: picURL) {
                         DispatchQueue.global(qos: .userInteractive).async {
                             var tempPic = UIImage(data: data)
+                            
                             pictures.append(tempPic!)
                         }
                     }
@@ -78,6 +79,10 @@ class StoreViewController: UIViewController {
                     
                     self.tableViewOutlet.reloadData()//reload tableView to populate data
                 }
+                print("dumping piccs: ")
+                dump(pictures)
+                print("dumping items: ")
+                dump(storeItems)
                 
             }
 
@@ -114,21 +119,30 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
             var itemsData = storeItems[indexPath.row]
             vc.itemData = itemsData
             
-            var docData:[String: Any] = [
-                "name": itemsData.name,
-                "price": itemsData.price,
-                "seller": itemsData.sellerName,
-                "stock": itemsData.currentStock,
-                "date": Date(),
-                "image": itemsData.picId
-                
+            //data for recently viewed
+            let insertData:[String: Any] = [
+                "name": storeItems[indexPath.row].name,
+                "price": storeItems[indexPath.row].price,
+                "image":storeItems[indexPath.row].picId,
+                "uid":storeItems[indexPath.row].uid,
+                "salePrice": storeItems[indexPath.row].price,
+                "sellerName": storeItems[indexPath.row].sellerName,
+                "dateAdded": Date(),
+                "costPer":storeItems[indexPath.row].costPer,
+                "currentStock":storeItems[indexPath.row].currentStock,
+                "desc":storeItems[indexPath.row].desc,
+                "numSold":storeItems[indexPath.row].numSold,
+                "tags": storeItems[indexPath.row].tags
             ]
-            
+                
+            //add item to recently viewed
             let db = Firestore.firestore()
             db.collection("account").document(uid!)
                 .collection("recentlyViewed").document(itemsData.id)
-                .setData(docData)
+                .setData(insertData)
+            //deselect and push
             
+            tableView.deselectRow(at: indexPath, animated: true)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

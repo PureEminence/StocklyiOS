@@ -20,6 +20,9 @@ final class DatabaseHelper {
     let uid = Auth.auth().currentUser!.uid.description
     let displayName = Auth.auth().currentUser!.displayName
     
+    
+    //create new conversation ----------------------------------------------------
+    
     public func createNewConvo(with otherUserID: String, firstMessage: Message, completion: @escaping (Bool) -> Void) {
         
         let messageDate = firstMessage.sentDate
@@ -140,10 +143,12 @@ final class DatabaseHelper {
                     }
                 }
             }
-                
-        
-        
     }
+    
+    
+    // Get all conversations ------------------------------------------------------
+    
+    
     public func getAllConvo(for otherUserID: String, _ completion: @escaping (_ data: [Conversation]) -> Void) { //pull all user convo
         
         var conversations = [Conversation]()
@@ -177,20 +182,18 @@ final class DatabaseHelper {
                                                          isRead: latestMessageStruct["isRead"] as! Bool)
                     
                         conversations.append(Conversation(id: id, name: name, otherUserID: otherUserID, latestMessage: latestMessageObj))
-                    
                         
                     }
                     completion(conversations)
                 }
-                
             }
-            
-        
     }
+    
+    
+    //Get conversations messages --------------------------------------------------------------------
     
     public func getConvMessages(with id: String, _ completion: @escaping (_ data: [Message]) -> Void) {
         
-        var convMessage:Message!
         var convMessages = [Message]()
         
         db.collection("account").document(uid)
@@ -222,8 +225,44 @@ final class DatabaseHelper {
             }
         
     
+    // Send message ----------------------------------------------------------------------------
+    
     public func sendMessage(to conversation: String, message: Message, completion: @escaping (Bool) -> Void) {
         
     }
+    
+    
+    public func getItemInfo(with itemID: String, _ completion: @escaping (_ data: [Item]) -> Void) {
+        
+        var itemDat = [Item]()
+        
+        db.collection("items").document("NbF2N1r1Sd46fKsxqFtq")
+            .getDocument { doc, error in
+                if error != nil {
+                    print(error!)
+                } else {
+                    
+                    let id = doc!.documentID
+                    let name = doc!.get("name") as! String
+                    let costPer = doc!.get("costPer") as! Int
+                    let currentStock = doc!.get("currentStock") as! Int
+                    let desc = doc!.get("desc") as! String
+                    let price = doc!.get("price") as! Int
+                    let tags = doc!.get("tags") as! String
+                    let dateAdded = doc!.get("dateAdded") as! Timestamp
+                    let picId = doc!.get("image") as! String
+                    let numSold = doc!.get("numSold") as! Int
+                    let sellerName = doc!.get("sellerName") as! String
+                    let userID = doc!.get("uid") as! String
+                    
+                    itemDat.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold: numSold, price: price, tags: tags, dateAdded: dateAdded, uid: userID, id: id, picId: picId, sellerName: sellerName))
+                    
+                    
+                }
+                completion(itemDat)
+            }
+    }
+    
+    
     
 }

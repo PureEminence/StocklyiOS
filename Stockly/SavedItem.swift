@@ -14,7 +14,7 @@ class SavedItem {
     
     
         var name: String
-        var currentStock: String
+        
         var price: String
         var dateAdded: Timestamp
         var id: String
@@ -23,7 +23,7 @@ class SavedItem {
 
     
     init(name: String,
-         currentStock: String,
+         
          price: String,
          dateAdded: Timestamp,
          id: String,
@@ -32,7 +32,7 @@ class SavedItem {
         
         
         self.name = name
-        self.currentStock = currentStock
+       
         self.price = price
         self.dateAdded = dateAdded
         self.id = id

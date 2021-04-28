@@ -33,7 +33,7 @@ class cartCell: UITableViewCell {
             "seller": sellerName!,
             "numStock": quantityText.text!,
             "dateAdded": Date(),
-            "picID": picID!
+            "picID": picID!,
         ]
         
         db.collection("account").document(uid!)
@@ -52,6 +52,7 @@ class cartCell: UITableViewCell {
         priceText.text = String(item.price)
         quantityText.text = String(item.quantity)
         sellerName = item.sellerName
+        
     }
     
 }

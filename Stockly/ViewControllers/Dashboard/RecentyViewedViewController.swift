@@ -16,9 +16,10 @@ class RecentyViewedViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     
     let uid = Auth.auth().currentUser?.uid.description
+    let db = Firestore.firestore()
     var pictures = [UIImage]()
-    var items = [SavedItem]()
-    
+    var items = [Item]()
+    var itemData = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,6 @@ class RecentyViewedViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func databasePull() {
-    let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid.description
     //pull items where uid matches logged in user
         db.collection("account").document(uid!)
@@ -44,28 +44,38 @@ class RecentyViewedViewController: UIViewController, UITableViewDelegate, UITabl
                     //pulling instance data from document and store in items
                     var id = doc.documentID
                     var name = doc.get("name") as! String
-                    var currentStock = String(doc.get("stock") as! Int)
-                    var price = String(doc.get("price") as! Int)
-                    var dateAdded = doc.get("date") as! Timestamp
+                    var costPer = doc.get("price") as! Int
+                    var currentStock = doc.get("currentStock") as! Int
+                    var desc = doc.get("desc") as! String
+                    var price = doc.get("price") as! Int
+                    var tags = doc.get("tags") as! String
+                    var dateAdded = doc.get("dateAdded") as! Timestamp
                     var picId = doc.get("image") as! String
-                    var sellerName = doc.get("seller") as! String
+                    var numSold = doc.get("numSold") as! Int
+                    var sellerName = doc.get("sellerName") as! String
+                    
                     
                     //loading image and storing
-                    var picURL:URL = URL(string: picId)!
-                
-                    if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
-                        let imageData:NSData = NSData(contentsOf: picURL)!
-                        let image = UIImage(data: imageData as Data)
-                        pictures.append(image!)
+                    if picId == "" {
+                        picId = "No pic data"
                     } else {
-                    if var data = try? Data(contentsOf: picURL) {
-                        DispatchQueue.global(qos: .userInteractive).async {
-                            var tempPic = UIImage(data: data)
-                            pictures.append(tempPic!)
+                        var picURL:URL = URL(string: picId)!
+                        if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
+                            let imageData:NSData = NSData(contentsOf: picURL)!
+                            let image = UIImage(data: imageData as Data)
+                            pictures.append(image!)
+                        } else {
+                        if var data = try? Data(contentsOf: picURL) {
+                            DispatchQueue.global(qos: .userInteractive).async {
+                                var tempPic = UIImage(data: data)
+                                pictures.append(tempPic!)
+                            }
                         }
                     }
-                }
-                    items.append(SavedItem(name: name, currentStock: currentStock, price: price, dateAdded: dateAdded, id: id, picId: picId, sellerName: sellerName))
+                    
+                        
+                    }
+                    items.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName))
                     
                     self.tableView.reloadData()//reload tableView to populate data
                 }
@@ -92,5 +102,15 @@ class RecentyViewedViewController: UIViewController, UITableViewDelegate, UITabl
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "StoreItemViewController") as? StoreItemViewController {
+            
+            vc.itemData = items[indexPath.row]
+            vc.itemImage = pictures[indexPath.row]
+            
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
 }

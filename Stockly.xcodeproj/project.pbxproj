@@ -237,6 +237,7 @@
 		C96DD2E82624079B00DB0F72 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C944EDCD26352DC000D79ED5 /* DatabaseHelper.swift */,
 				C96DD2E9262407E800DB0F72 /* Utilities.swift */,
 				C96DD2EC26242FB600DB0F72 /* Constants.swift */,
 			);
@@ -283,7 +284,6 @@
 				C944EDB92634D2DD00D79ED5 /* ChatViewController.swift */,
 				C944EDBD2634DB1800D79ED5 /* MessagingViewController.swift */,
 				C944EDC52634F9C700D79ED5 /* NewMessageViewController.swift */,
-				C944EDCD26352DC000D79ED5 /* DatabaseHelper.swift */,
 				C9E8B094262E5F7400DBB0ED /* DashboardViewController.swift */,
 				C9E8B098262E5FA600DBB0ED /* PurchasesViewController.swift */,
 				C9E8B09B262E5FBE00DBB0ED /* SavedViewController.swift */,

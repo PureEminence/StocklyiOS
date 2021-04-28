@@ -18,7 +18,7 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let uid = Auth.auth().currentUser?.uid.description
     var pictures = [UIImage]()
-    var items = [SavedItem]()
+    var items = [Item]()
     
     
     override func viewDidLoad() {
@@ -45,28 +45,38 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     //pulling instance data from document and store in items
                     var id = doc.documentID
                     var name = doc.get("name") as! String
-                    var currentStock = doc.get("numStock") as! String
-                    var price = doc.get("price") as! String
+                    var costPer = doc.get("price") as! Int
+                    var currentStock = doc.get("currentStock") as! Int
+                    var desc = doc.get("desc") as! String
+                    var price = doc.get("price") as! Int
+                    var tags = doc.get("tags") as! String
                     var dateAdded = doc.get("dateAdded") as! Timestamp
-                    var picId = doc.get("picID") as! String
-                    var sellerName = doc.get("seller") as! String
+                    var picId = doc.get("image") as! String
+                    var numSold = doc.get("numSold") as! Int
+                    var sellerName = doc.get("sellerName") as! String
+                    
                     
                     //loading image and storing
-                    var picURL:URL = URL(string: picId)!
-                
-                    if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
-                        let imageData:NSData = NSData(contentsOf: picURL)!
-                        let image = UIImage(data: imageData as Data)
-                        pictures.append(image!)
+                    if picId == "" {
+                        picId = "No pic data"
                     } else {
-                    if var data = try? Data(contentsOf: picURL) {
-                        DispatchQueue.global(qos: .userInteractive).async {
-                            var tempPic = UIImage(data: data)
-                            pictures.append(tempPic!)
+                        var picURL:URL = URL(string: picId)!
+                        if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
+                            let imageData:NSData = NSData(contentsOf: picURL)!
+                            let image = UIImage(data: imageData as Data)
+                            pictures.append(image!)
+                        } else {
+                        if var data = try? Data(contentsOf: picURL) {
+                            DispatchQueue.global(qos: .userInteractive).async {
+                                var tempPic = UIImage(data: data)
+                                pictures.append(tempPic!)
+                            }
                         }
                     }
-                }
-                    items.append(SavedItem(name: name, currentStock: currentStock, price: price, dateAdded: dateAdded, id: id, picId: picId, sellerName: sellerName))
+                    
+                        
+                    }
+                    items.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName))
                     
                     self.tableView.reloadData()//reload tableView to populate data
                 }
@@ -110,6 +120,16 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
             tableView.deleteRows(at: [indexPath], with: .left)
             
             tableView.endUpdates()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "StoreItemViewController") as? StoreItemViewController {
+            
+            vc.itemData = items[indexPath.row]
+            vc.imageView.image = pictures[indexPath.row]
+            
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

@@ -48,10 +48,10 @@ class CheckoutViewController: UIViewController {
         super.viewDidLoad()
         
         orderID = uid!.suffix(5).appending(ranNum)
-        subtotalText.text = String(subtotal)
-        shippingText.text = String(shipping)
-        taxText.text = String(tax)
-        totalText.text = String(total)
+        subtotalText.text = "$".appending(String(subtotal))
+        shippingText.text = "$".appending(String(shipping))
+        taxText.text = "$".appending(String(tax))
+        totalText.text = "$".appending(String(total))
     }
     
 
@@ -140,7 +140,8 @@ class CheckoutViewController: UIViewController {
                 }
                 
                 //setup data for db
-                let totalC = Float(totalText.text!)
+                
+                let totalC = Float(totalText.text!.dropFirst(1))
                 let cartTotal = String(format: "%.2f", totalC!)
                 for i in 0...cartItems.count-1 {
                     //inserts data for each item in cart

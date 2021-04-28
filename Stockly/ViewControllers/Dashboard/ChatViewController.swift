@@ -10,6 +10,7 @@ import MessageKit
 import Firebase
 import InputBarAccessoryView
 
+
 struct Sender: SenderType {
  public var senderId: String
  public var displayName: String

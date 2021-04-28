@@ -27,6 +27,7 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var numItemsScrollPicker: UIPickerView!
     
     
+    
     var itemData: Item!
     var itemImage = UIImage()
     var pickNum: Int!
@@ -35,10 +36,15 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     var itemID: String!
     var userID: String!
     
+    
     let uid = Auth.auth().currentUser?.uid.description
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
+        
+        print("Store ITem dump")
+        dump(itemData)
+        
         addedtoCartText.alpha = 0 //hide till needed
         super.viewDidLoad()
         //gets vars from itemData and sets to view texts
@@ -70,7 +76,12 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
             "uid":itemData.uid,
             "salePrice": itemData.price,
             "sellerName": itemData.sellerName,
-            "dateAdded": Date()
+            "dateAdded": Date(),
+            "costPer":itemData.costPer,
+            "currentStock":itemData.currentStock,
+            "desc":itemData.desc,
+            "numSold":itemData.numSold,
+            "tags":itemData.tags
         ]
         
         db.collection("account").document(uid!)

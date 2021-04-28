@@ -8,11 +8,12 @@ import SDWebImage
 import UIKit
 import Firebase
 import FirebaseDatabase
-class InventoryViewController: UIViewController {
+class InventoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var noItemText: UILabel!
+    
     let uid = Auth.auth().currentUser?.uid.description
     var pictures = [UIImage]()
     var items = [Item]()
@@ -25,6 +26,7 @@ class InventoryViewController: UIViewController {
         
  
        databasePull()
+        
     } // end viewdidload
     
 //------------------------------------------------------Database Pull
@@ -37,6 +39,7 @@ class InventoryViewController: UIViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
+                
                 for doc in querySnapshot!.documents {
                     //pulling instance data from document and store in items
                     var id = doc.documentID
@@ -74,20 +77,25 @@ class InventoryViewController: UIViewController {
                     }
                     items.append(Item(name: name, costPer: costPer, currentStock: currentStock, desc: desc, numSold:numSold, price: price, tags: tags, dateAdded: dateAdded, uid: uid!, id: id, picId: picId, sellerName: sellerName))
                     
+                    
+                    
                     self.tableView.reloadData()//reload tableView to populate data
+                    
                 }
             }
         }
     } // -------------------------------------------- end db pull
-}//end VC
 
-//extention for setting table view cells
-extension InventoryViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    
+
+        
     //get items size
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        print(items.count)
+        if items.count == 0 {
+            noItemText.alpha = 1
+        } else {
+            noItemText.alpha = 0
+        }
         return items.count
     }
     //set cell

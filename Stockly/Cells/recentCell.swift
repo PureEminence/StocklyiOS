@@ -25,7 +25,7 @@ class recentCell: UITableViewCell {
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid.description
 
-    func setItem(item: SavedItem) {
+    func setItem(item: Item) {
     
         picID = item.picId
         itemID = item.id

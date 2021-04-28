@@ -46,6 +46,9 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
         guard let imageData = image.pngData() else { return }
         
+        uploadPicBtn.setBackgroundImage(image, for: .normal)
+        uploadPicBtn.setTitle("", for: .normal)
+        
         var ranNum = String(Int.random(in: 0..<1000000)) //Randomly Generate Image File location
         var picStore = Auth.auth().currentUser?.uid.description.appending(ranNum) //Uses uid as a prefix
         
@@ -152,7 +155,7 @@ class AddItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
     }//end add item to database
     
-    func toInv() { //returns to inv page
+    func toInv() { //returns to inv page thru tabVC
         let tabVC = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabViewController) as? TabViewController
         self.view.window?.rootViewController = tabVC
         self.view.window?.makeKeyAndVisible()

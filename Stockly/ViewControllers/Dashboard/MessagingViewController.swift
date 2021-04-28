@@ -99,7 +99,7 @@ class MessagingViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {//when row tapped go to chatVC with conv data
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = ChatViewController()
         var conversation = conversations[indexPath.row]
