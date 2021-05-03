@@ -121,19 +121,18 @@ class CheckoutViewController: UIViewController {
                 for doc in querySnapshot!.documents {
                     
                     //pulling data from document
-                    var id = doc.documentID
-                    var name = doc.get("name") as! String
-                    var currentStock = doc.get("currentStock") as! Int
-                    var desc = doc.get("desc") as! String
-                    var price = doc.get("price") as! Int
-                    var tags = doc.get("tags") as! String
-                    var dateAdded = doc.get("dateAdded") as! Timestamp
-                    var picId = doc.get("image") as! String
-                    var sellerName = doc.get("sellerName") as! String
-                    var quantity = doc.get("numInCart") as! Int
-                    var salePrice = doc.get("salePrice") as! Int
-                    var picURL:URL = URL(string: picId)!
-                    var userID = doc.get("uid") as! String
+                    let id = doc.documentID
+                    let name = doc.get("name") as! String
+                    let currentStock = doc.get("currentStock") as! Int
+                    let desc = doc.get("desc") as! String
+                    let price = doc.get("price") as! Int
+                    let tags = doc.get("tags") as! String
+                    let dateAdded = doc.get("dateAdded") as! Timestamp
+                    let picId = doc.get("image") as! String
+                    let sellerName = doc.get("sellerName") as! String
+                    let quantity = doc.get("numInCart") as! Int
+        
+                    let userID = doc.get("uid") as! String
                     
                     cartItems.append(CartItem(name: name, currentStock: currentStock, desc: desc, price: price, tags: tags, dateAdded: dateAdded, uid: userID, id: id, picId: picId, sellerName: sellerName,quantity: quantity))
                     
@@ -164,7 +163,7 @@ class CheckoutViewController: UIViewController {
                     docRef.getDocument { (document, error) in
                         if let document = document, document.exists {
                             let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                            storeName = document.get("storeName") as! String
+                            storeName = document.get("storeName") as? String
                             print("Document data: \(dataDescription)")
                         } else {
                             print("Document does not exist")

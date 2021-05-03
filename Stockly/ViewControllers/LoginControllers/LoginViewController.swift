@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
                 
             }
             else { //get current VC and display new
-                let tabViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabViewController) as? TabViewController
+                let tabViewController = self.storyboard?.instantiateViewController(identifier: "TabViewController") as? TabViewController
                 //display
                 self.view.window?.rootViewController = tabViewController
                 self.view.window?.makeKeyAndVisible()

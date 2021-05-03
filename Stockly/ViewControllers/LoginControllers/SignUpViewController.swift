@@ -110,7 +110,7 @@ class SignUpViewController: UIViewController {
     
     func toHomeScreen() {
         
-        let tabViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabViewController) as? TabViewController
+        let tabViewController = self.storyboard?.instantiateViewController(identifier: "TabViewController") as? TabViewController
         //display
         self.view.window?.rootViewController = tabViewController
         self.view.window?.makeKeyAndVisible()

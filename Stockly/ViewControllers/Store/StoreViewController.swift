@@ -33,7 +33,6 @@ class StoreViewController: UIViewController {
         
     func databasePull() {
     let db = Firestore.firestore()
-    let uid = Auth.auth().currentUser?.uid.description
     //pull items where uid matches logged in user
         db.collection("items")
         .getDocuments() { [self] (querySnapshot, err) in
@@ -45,30 +44,30 @@ class StoreViewController: UIViewController {
                     
 
                     //pulling instance data from document and store in items
-                    var id = doc.documentID
-                    var name = doc.get("name") as! String
-                    var costPer = doc.get("costPer") as! Int
-                    var currentStock = doc.get("currentStock") as! Int
-                    var desc = doc.get("desc") as! String
-                    var price = doc.get("price") as! Int
-                    var tags = doc.get("tags") as! String
-                    var dateAdded = doc.get("dateAdded") as! Timestamp
-                    var picId = doc.get("image") as! String
-                    var numSold = doc.get("numSold") as! Int
-                    var sellerName = doc.get("sellerName") as! String
-                    var userID = doc.get("uid") as! String
+                    let id = doc.documentID
+                    let name = doc.get("name") as! String
+                    let costPer = doc.get("costPer") as! Int
+                    let currentStock = doc.get("currentStock") as! Int
+                    let desc = doc.get("desc") as! String
+                    let price = doc.get("price") as! Int
+                    let tags = doc.get("tags") as! String
+                    let dateAdded = doc.get("dateAdded") as! Timestamp
+                    let picId = doc.get("image") as! String
+                    let numSold = doc.get("numSold") as! Int
+                    let sellerName = doc.get("sellerName") as! String
+                    let userID = doc.get("uid") as! String
                     
                     //loading image and storing
-                    var picURL:URL = URL(string: picId)!
+                    let picURL:URL = URL(string: picId)!
                 
                     if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
                         let imageData:NSData = NSData(contentsOf: picURL)!
                         let image = UIImage(data: imageData as Data)
                         pictures.append(image!)
                     } else {
-                    if var data = try? Data(contentsOf: picURL) {
+                    if let data = try? Data(contentsOf: picURL) {
                         DispatchQueue.global(qos: .userInteractive).async {
-                            var tempPic = UIImage(data: data)
+                            let tempPic = UIImage(data: data)
                             
                             pictures.append(tempPic!)
                         }
@@ -116,7 +115,7 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "StoreItemViewController") as? StoreItemViewController {
             
             vc.itemImage = pictures[indexPath.row]
-            var itemsData = storeItems[indexPath.row]
+            let itemsData = storeItems[indexPath.row]
             vc.itemData = itemsData
             
             //data for recently viewed

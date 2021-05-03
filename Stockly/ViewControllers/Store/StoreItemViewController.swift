@@ -29,7 +29,7 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     
     var itemData: Item!
-    var itemImage = UIImage()
+    var itemImage: UIImage!
     var pickNum: Int!
     var pickerNumbers = [Int]()
     var pickerNum: Int!
@@ -68,7 +68,6 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     @IBAction func saveButton(_ sender: Any) {
         
-        let numItems:Int = pickNum
         let insertData:[String: Any] = [
             "name": itemData.name,
             "price": itemData.price,

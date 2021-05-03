@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DashboardViewController: ViewController {
+class DashboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

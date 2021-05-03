@@ -31,7 +31,7 @@ class SaleViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.tableView.dataSource = self
 
         orderIDText.text = orderDetails[0].id
-        var date = orderDetails[0].date.dateValue().description
+        let date = orderDetails[0].date.dateValue().description
         dateText.text = String(date.dropLast(5))
         orderTotalText.text = "$".appending(String(orderDetails[0].total))
         quantityText.text = String(orderDetails[0].itemNumTotal)
@@ -52,24 +52,24 @@ class SaleViewController: UIViewController, UITableViewDelegate, UITableViewData
                     for doc in querySnapshot!.documents {
                        
                         //pulling instance data from document and store in items
-                        var id = doc.documentID
-                        var name = doc.get("name") as! String
-                        var price = doc.get("price") as! Int
-                        var picId = doc.get("image") as! String
-                        var quantity = doc.get("numInCart") as! Int
-                        var salePrice = doc.get("salePrice") as! Int
+                        let id = doc.documentID
+                        let name = doc.get("name") as! String
+                        let price = doc.get("price") as! Int
+                        let picId = doc.get("image") as! String
+                        let quantity = doc.get("numInCart") as! Int
+                        let salePrice = doc.get("salePrice") as! Int
                         
                         //loading image and storing
-                        var picURL:URL = URL(string: picId)!
+                        let picURL:URL = URL(string: picId)!
                     
                         if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
                             let imageData:NSData = NSData(contentsOf: picURL)!
                             let image = UIImage(data: imageData as Data)
                             pictures.append(image!)
                         } else {
-                        if var data = try? Data(contentsOf: picURL) {
+                        if let data = try? Data(contentsOf: picURL) {
                             DispatchQueue.global(qos: .userInteractive).async {
-                                var tempPic = UIImage(data: data)
+                                let tempPic = UIImage(data: data)
                                 pictures.append(tempPic!)
                             }
                         }

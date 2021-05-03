@@ -41,10 +41,10 @@ class PurchasesViewController: UIViewController, UITableViewDelegate, UITableVie
                 for doc in querySnapshot!.documents {
                     
                     //pulling instance data from document and store
-                    var id = doc.documentID
-                    var total = doc.get("cartTotal") as! String
-                    var date = doc.get("purchaseDate") as! Timestamp
-                    var quantity = doc.get("numOfItems") as! Int
+                    let id = doc.documentID
+                    let total = doc.get("cartTotal") as! String
+                    let date = doc.get("purchaseDate") as! Timestamp
+                    let quantity = doc.get("numOfItems") as! Int
                     
                     
                     items.append(PurItem(id: id, total: total, date: date, quantity: quantity))

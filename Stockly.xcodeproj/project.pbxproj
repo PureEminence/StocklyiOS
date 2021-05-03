@@ -10,7 +10,6 @@
 		66BE1578F9E6C3141AB2E833 /* Pods_Stockly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0677454E0D1CDEC39B9CB83F /* Pods_Stockly.framework */; };
 		C930645C2623A24C00A3A837 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930645B2623A24C00A3A837 /* AppDelegate.swift */; };
 		C930645E2623A24C00A3A837 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930645D2623A24C00A3A837 /* SceneDelegate.swift */; };
-		C93064602623A24C00A3A837 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C930645F2623A24C00A3A837 /* ViewController.swift */; };
 		C93064632623A24C00A3A837 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93064612623A24C00A3A837 /* Main.storyboard */; };
 		C93064652623A24D00A3A837 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93064642623A24D00A3A837 /* Assets.xcassets */; };
 		C93064682623A24D00A3A837 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C93064662623A24D00A3A837 /* LaunchScreen.storyboard */; };
@@ -28,7 +27,6 @@
 		C96DD2EA262407E800DB0F72 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96DD2E9262407E800DB0F72 /* Utilities.swift */; };
 		C96DD2ED26242FB600DB0F72 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96DD2EC26242FB600DB0F72 /* Constants.swift */; };
 		C96DD2F02624A55D00DB0F72 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96DD2EF2624A55D00DB0F72 /* TabViewController.swift */; };
-		C96DD2FE262569D000DB0F72 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96DD2FD262569D000DB0F72 /* PhotoViewController.swift */; };
 		C96DD30226256A1F00DB0F72 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96DD30126256A1F00DB0F72 /* AddItemViewController.swift */; };
 		C96DD30526256B2B00DB0F72 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96DD30426256B2B00DB0F72 /* ProfileViewController.swift */; };
 		C96DD309262582A800DB0F72 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96DD308262582A800DB0F72 /* InventoryViewController.swift */; };
@@ -64,6 +62,7 @@
 		C9E910BB263483520095CCD6 /* SalesItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910BA263483520095CCD6 /* SalesItem.swift */; };
 		C9E910BE2634849F0095CCD6 /* SalesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910BD2634849F0095CCD6 /* SalesCell.swift */; };
 		C9E910C1263485E00095CCD6 /* SaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910C0263485E00095CCD6 /* SaleCell.swift */; };
+		C9FDBC62264075AD0059E864 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDBC61264075AD0059E864 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +72,6 @@
 		C93064582623A24C00A3A837 /* Stockly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stockly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C930645B2623A24C00A3A837 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C930645D2623A24C00A3A837 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C930645F2623A24C00A3A837 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C93064622623A24C00A3A837 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C93064642623A24D00A3A837 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C93064672623A24D00A3A837 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 		C96DD2E9262407E800DB0F72 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C96DD2EC26242FB600DB0F72 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C96DD2EF2624A55D00DB0F72 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
-		C96DD2FD262569D000DB0F72 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		C96DD30126256A1F00DB0F72 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		C96DD30426256B2B00DB0F72 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C96DD308262582A800DB0F72 /* InventoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +125,7 @@
 		C9E910BA263483520095CCD6 /* SalesItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesItem.swift; sourceTree = "<group>"; };
 		C9E910BD2634849F0095CCD6 /* SalesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesCell.swift; sourceTree = "<group>"; };
 		C9E910C0263485E00095CCD6 /* SaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCell.swift; sourceTree = "<group>"; };
+		C9FDBC61264075AD0059E864 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +178,6 @@
 		C930645A2623A24C00A3A837 /* Stockly */ = {
 			isa = PBXGroup;
 			children = (
-				C9E8B087262E5E8E00DBB0ED /* CartViewController.swift */,
 				C9E910AB2633E80C0095CCD6 /* PurItem.swift */,
 				C9E910B12633EEF90095CCD6 /* PurCItem.swift */,
 				C9E910B42633FD7B0095CCD6 /* PurchaseItem.swift */,
@@ -211,7 +208,6 @@
 				C9E8B07F262E5E1E00DBB0ED /* Store */,
 				C99B777C262E45B900E57D9C /* InvControllers */,
 				C99B7779262E1DD800E57D9C /* LoginControllers */,
-				C96DD2FD262569D000DB0F72 /* PhotoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -247,11 +243,11 @@
 		C99B7779262E1DD800E57D9C /* LoginControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C930645F2623A24C00A3A837 /* ViewController.swift */,
 				C93064702623A26A00A3A837 /* LoginViewController.swift */,
 				C93064732623A27A00A3A837 /* SignUpViewController.swift */,
 				C96DD2EF2624A55D00DB0F72 /* TabViewController.swift */,
 				C96DD30E26262CF200DB0F72 /* NavViewController.swift */,
+				C9FDBC61264075AD0059E864 /* HomeViewController.swift */,
 			);
 			path = LoginControllers;
 			sourceTree = "<group>";
@@ -269,6 +265,7 @@
 		C9E8B07F262E5E1E00DBB0ED /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				C9E8B087262E5E8E00DBB0ED /* CartViewController.swift */,
 				C9E8B080262E5E4300DBB0ED /* StoreViewController.swift */,
 				C9E8B084262E5E7600DBB0ED /* StoreItemViewController.swift */,
 				C9E8B08D262E5ED300DBB0ED /* CheckoutViewController.swift */,
@@ -427,7 +424,6 @@
 				C944EDC22634EE4300D79ED5 /* MessagesCell.swift in Sources */,
 				C96DD309262582A800DB0F72 /* InventoryViewController.swift in Sources */,
 				C9E8B0B9262E76E200DBB0ED /* UserStoreViewController.swift in Sources */,
-				C93064602623A24C00A3A837 /* ViewController.swift in Sources */,
 				C9E910852632995A0095CCD6 /* cartCell.swift in Sources */,
 				C9E8B085262E5E7600DBB0ED /* StoreItemViewController.swift in Sources */,
 				C9E9109F2633E14E0095CCD6 /* purchasesCell.swift in Sources */,
@@ -441,6 +437,7 @@
 				C944EDC62634F9C700D79ED5 /* NewMessageViewController.swift in Sources */,
 				C944EDBE2634DB1800D79ED5 /* MessagingViewController.swift in Sources */,
 				C9E8B0AB262E606D00DBB0ED /* PurchaseViewController.swift in Sources */,
+				C9FDBC62264075AD0059E864 /* HomeViewController.swift in Sources */,
 				C960813C2627D84700A0C4D2 /* itemCell.swift in Sources */,
 				C9E8B09C262E5FBE00DBB0ED /* SavedViewController.swift in Sources */,
 				C9E910912633C06E0095CCD6 /* savedCell.swift in Sources */,
@@ -470,7 +467,6 @@
 				C9E910BB263483520095CCD6 /* SalesItem.swift in Sources */,
 				C96DD30C2626045100DB0F72 /* ProfileEditViewController.swift in Sources */,
 				C9E910AC2633E80C0095CCD6 /* PurItem.swift in Sources */,
-				C96DD2FE262569D000DB0F72 /* PhotoViewController.swift in Sources */,
 				C944EDCA2635176D00D79ED5 /* UserSearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -47,8 +47,8 @@ class NewMessageViewController: UIViewController, UISearchBarDelegate, UITableVi
             } else {
                 for doc in querySnapshot!.documents {
                     
-                    var storeName = doc.get("storeName") as! String
-                    var userID = doc.documentID
+                    let storeName = doc.get("storeName") as! String
+                    let userID = doc.documentID
                     self.searchUser.append(SearchResults(storeName: storeName, userID: userID))
                 }
                 

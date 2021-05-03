@@ -13,13 +13,13 @@ class EditItemViewController: UIViewController {
     @IBOutlet weak var soldNumText: UILabel!
     @IBOutlet weak var dateAddedText: UILabel!
     
-    @IBOutlet weak var stockNumText: UILabel!//
+    @IBOutlet weak var stockNumText: UILabel!
     @IBOutlet weak var itemImageView: UIImageView!
-    @IBOutlet weak var updateNameText: UITextField!//
-    @IBOutlet weak var updatePriceText: UITextField!//
+    @IBOutlet weak var updateNameText: UITextField!
+    @IBOutlet weak var updatePriceText: UITextField!
     @IBOutlet weak var addStockText: UITextField!
-    @IBOutlet weak var updateDescText: UITextField!//
-    @IBOutlet weak var updateTagsText: UITextField!//
+    @IBOutlet weak var updateDescText: UITextField!
+    @IBOutlet weak var updateTagsText: UITextField!
     @IBOutlet weak var errorMessageText: UILabel!
     
     var itemData: Item!
@@ -30,12 +30,12 @@ class EditItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupElements()
-        var date = itemData.dateAdded.dateValue().description
+        let date = itemData.dateAdded.dateValue().description
         errorMessageText.text = errorMessage
         itemImageView.image = image
-        soldNumText.text = String(itemData.numSold)
+        soldNumText.text = "Sold: ".appending(String(itemData.numSold))
         dateAddedText.text = String(date.dropLast(5))
-        stockNumText.text = String(itemData.currentStock)
+        stockNumText.text = "In stock: ".appending(String(itemData.currentStock))
         updateNameText.text = itemData.name
         updatePriceText.text = String(itemData.price)
         updateDescText.text = itemData.desc
@@ -78,15 +78,14 @@ class EditItemViewController: UIViewController {
                 addStock = "0"
             }
             
-            let stockNum = Int(stockNumText.text!)!+Int(addStock!)!
-            let uid = itemData.uid
+            let stockNum = Int((stockNumText.text?.dropFirst(10))!)!+Int(addStock!)!
             
 
             let docData: [String: Any] = [ //create data document to be uploaded
-                "name": updateName,
-                "price": Int(updatePrice!),
-                "desc": updateDesc,
-                "tags": updateTags,
+                "name": updateName!,
+                "price": Int(updatePrice!)!,
+                "desc": updateDesc!,
+                "tags": updateTags!,
                 "currentStock": stockNum,
             ]
             
@@ -111,7 +110,7 @@ class EditItemViewController: UIViewController {
     
     func  pageNav() { //back to inv screen thru tabVC
         
-        let tabVC = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabViewController) as? TabViewController
+        let tabVC = self.storyboard?.instantiateViewController(identifier: "TabViewController") as? TabViewController
         self.view.window?.rootViewController = tabVC
         self.view.window?.makeKeyAndVisible()
         }

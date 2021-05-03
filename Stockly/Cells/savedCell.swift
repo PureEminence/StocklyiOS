@@ -30,7 +30,7 @@ class savedCell: UITableViewCell {
         picID = item.picId
         itemID = item.id
         nameText.text = item.name
-        priceText.text = String(item.price)
+        priceText.text = "$".appending(String(item.price))
         sellerButtonOut.setTitle(item.sellerName, for: .normal)
     }
     

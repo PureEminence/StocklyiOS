@@ -21,9 +21,9 @@ class SalesCell: UITableViewCell {
         buyerNameText.text = item.buyerName
         orderIDText.text = item.id
         quantityText.text = String(item.itemNumTotal)
-        totalText.text = String(item.total)
+        totalText.text = "$".appending(String(item.total))
         
-        var date = item.date.dateValue().description
+        let date = item.date.dateValue().description
         dateText.text = String(date.dropLast(5))
     }
     

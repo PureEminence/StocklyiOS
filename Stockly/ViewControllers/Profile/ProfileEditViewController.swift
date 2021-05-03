@@ -12,32 +12,41 @@ import Firebase
 
 class ProfileEditViewController: UIViewController {
 
-    
-    @IBOutlet weak var shopNameText: UITextField!
-    @IBOutlet weak var bioText: UITextField!
+    @IBOutlet weak var profilePicOut: UIButton!
+    @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var lastNameText: UITextField!
+    @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var taglineText: UITextField!
-    @IBOutlet weak var locationText: UITextField!
+    @IBOutlet weak var bioText: UITextField!
     
-    
+    var profileInfo: Profile!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        firstNameText.text = profileInfo.firstName
+        lastNameText.text = profileInfo.lastName
+        emailText.text = profileInfo.email
+        taglineText.text = profileInfo.tagline
+        bioText.text = profileInfo.bioMessage
     }
     
 
     @IBAction func saveProfileBtn(_ sender: Any) {
     // set to textfields
-        let shopName = shopNameText.text
-        let bio = bioText.text
+        let profilePic = profilePicOut.image(for: .normal)
+        let firstName = firstNameText.text
+        let lastName = lastNameText.text
+        let email = emailText.text
         let tagline = taglineText.text
-        let location = locationText.text
+        let bio = bioText.text
         //send to db
         let db = Firestore.firestore()
         //get uid
-        let userId = Auth.auth().currentUser?.uid.description
+        let uid = Auth.auth().currentUser?.uid.description
         //add data to profile db
-        db.collection("profile").addDocument(data: ["shopName": shopName, "bio": bio, "tagline": tagline, "location": location, "uid": userId])
+        db.collection("account").document(uid!)
+            .setData(["profilePic": profilePic!, "firstName": firstName!, "lastName": lastName!, "email": email!, "tagline": tagline!, "bio": bio!])
+        
     }
     
 

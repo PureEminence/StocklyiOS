@@ -153,7 +153,7 @@ final class DatabaseHelper {
         
         var conversations = [Conversation]()
         
-        let docRef = db.collection("account").document(uid)
+         db.collection("account").document(uid)
             .collection("conversations")
             .getDocuments { (snap, err) in
                 if snap!.isEmpty {
@@ -161,10 +161,10 @@ final class DatabaseHelper {
                 } else {
                     for doc in snap!.documents {
                         
-                        var id = doc.documentID
-                        var name = doc.get("name") as! String
-                        var otherUserID = doc.get("otherUserID") as! String
-                        var latestMessageDict = doc.get("latestMessage") as! Dictionary<String, Any>
+                        let id = doc.documentID
+                        let name = doc.get("name") as! String
+                        let otherUserID = doc.get("otherUserID") as! String
+                        let latestMessageDict = doc.get("latestMessage") as! Dictionary<String, Any>
                         
                         
                         
@@ -173,11 +173,11 @@ final class DatabaseHelper {
                             latestMessageStruct[key] = value
                         }
                         
-                        var date = latestMessageStruct["date"] as! Timestamp
+                        let date = latestMessageStruct["date"] as! Timestamp
                 
                         
-                        var latestMessageObj = LatestMessage(id: latestMessageStruct["id"] as! String,
-                                                             date: date.dateValue().description as! String,
+                        let latestMessageObj = LatestMessage(id: latestMessageStruct["id"] as! String,
+                                                             date: date.dateValue().description,
                                                          message: latestMessageStruct["message"] as! String,
                                                          isRead: latestMessageStruct["isRead"] as! Bool)
                     
@@ -199,21 +199,21 @@ final class DatabaseHelper {
         db.collection("account").document(uid)
             .collection("conversations").document(id)
             .collection("messages").addSnapshotListener { snap, err in
-                guard let document = snap else{
+                guard snap != nil else{
                     print("No messages")
                     return
                 }
                 for doc in snap!.documents {
 
-                        var msgContent = doc.get("content") as! String
-                        var date = doc.get("date") as! Timestamp
-                        var id = doc.get("id") as! String
-                        var isRead = doc.get("isRead") as! Bool
-                        var sender = doc.get("sender") as! String
-                        var type = doc.get("type") as! String
-                        var otherUserID = doc.get("otherUserID") as! String
+                    let msgContent = doc.get("content") as! String
+                    let date = doc.get("date") as! Timestamp
+                    let id = doc.get("id") as! String
+                    let isRead = doc.get("isRead") as! Bool
+                    let sender = doc.get("sender") as! String
+                    let type = doc.get("type") as! String
+                    let otherUserID = doc.get("otherUserID") as! String
 
-                        var senderObj = Sender(senderId: sender, displayName: (Auth.auth().currentUser?.displayName)!, picURL: "")
+                    let senderObj = Sender(senderId: sender, displayName: (Auth.auth().currentUser?.displayName)!, picURL: "")
 
 
 

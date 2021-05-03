@@ -22,18 +22,27 @@ class cartCell: UITableViewCell {
     var picID: String!
     var itemID: String!
     var sellerName: String!
+    var items: CartItem!
+    
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser?.uid.description
     
     @IBAction func SavedButton(_ sender: UIButton) {
         
+       
         let insertData:[String: Any] = [
-            "name": nameText.text!,
-            "price": priceText.text!,
-            "seller": sellerName!,
-            "numStock": quantityText.text!,
-            "dateAdded": Date(),
-            "picID": picID!,
+            "name": items.name,
+            "price": items.price,
+            "costPer": items.price,
+            "currentStock":items.currentStock,
+            "dateAdded":items.dateAdded,
+            "desc":items.desc,
+            "image":items.picId,
+            "salePrice":items.price,
+            "tags":items.tags,
+            "uid":items.uid,
+            "numSold": items.quantity,
+            "sellerName": items.sellerName
         ]
         
         db.collection("account").document(uid!)
@@ -46,6 +55,7 @@ class cartCell: UITableViewCell {
     
     func setItem(item: CartItem) {
     
+        items = item
         picID = item.picId
         itemID = item.id
         nameText.text = item.name

@@ -19,7 +19,7 @@ class SaleCell: UITableViewCell {
     func setItem(item:SaleItem) {
         itemNameText.text = item.name
         quantityText.text = String(item.quantity)
-        priceText.text = String(item.price)
-        totalText.text = String(item.total)
+        priceText.text = "$".appending(String(item.price))
+        totalText.text = "$".appending(String(item.total))
     }
 }

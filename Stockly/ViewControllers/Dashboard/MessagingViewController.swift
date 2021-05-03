@@ -102,7 +102,7 @@ class MessagingViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {//when row tapped go to chatVC with conv data
         tableView.deselectRow(at: indexPath, animated: true)
         let vc = ChatViewController()
-        var conversation = conversations[indexPath.row]
+        let conversation = conversations[indexPath.row]
         
         if vc.isNewConv == false {
             getMessages(otherID: conversation.otherUserID)

@@ -20,10 +20,17 @@ class ProfileViewController: UIViewController {
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser!.uid
     
+    var profileInfo = Profile(profilePic: "", joinedDate: "", tagline: "", bioMessage: "", storeName: "", firstName: "", lastName: "", email: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        getProfileData()
+        getProfileData( { (profileIn) in
+           
+            self.profileInfo = profileIn
+            
+        })
+        
         
     }
     
@@ -41,17 +48,116 @@ class ProfileViewController: UIViewController {
     }
     
     
+    @IBAction func editProfile(_ sender: Any) {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "ProfileEditViewController") as? ProfileEditViewController {
+            
+            //vc.profilePic.image = profilePic.image
+            vc.profileInfo = profileInfo
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
+    
+    
+    
     
     func toLoginScreen(){
-        let vc = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.viewController) as? ViewController
-    
-        navigationController?.pushViewController(vc!, animated: true)
+        
+        let vc = self.storyboard?.instantiateViewController(identifier: "HomeViewController") as? HomeViewController
+        //display
+        self.view.window?.rootViewController = vc
+        self.view.window?.makeKeyAndVisible()
 
     }
     
-    func getProfileData(){
-        db.collection("account").document(uid)
-            
+    func getProfileData(_ completion: @escaping (_ data: Profile) -> Void) {
         
+        var profileInfo = Profile(profilePic: "", joinedDate: "", tagline: "", bioMessage: "", storeName: "", firstName: "", lastName: "", email: "")
+        
+        db.collection("account").document(uid)
+            .getDocument { [weak self] doc, error in
+                if error != nil {
+                    print(error!)
+                } else {
+                    var profilePic = ""
+                    var tagline = ""
+                    var bioMessage = ""
+                    if doc!.get("profilePic") != nil {
+                        profilePic = doc!.get("profilePic")! as! String
+                        
+                    }
+                    if doc!.get("tagline") != nil {
+                        tagline = doc!.get("tagline")! as! String
+                    }
+                    if doc!.get("bioMessage") != nil {
+                        bioMessage = doc!.get("bioMessage")! as! String
+                    }
+                    
+                    let joinedDate = doc!.get("created")! as! Timestamp
+                    let storeName = doc!.get("storeName")! as! String
+                    let firstName = doc!.get("firstName")! as! String
+                    let lastName = doc!.get("lastName")! as! String
+                    let email = doc!.get("email")! as! String
+                    
+                    if profilePic == "" {
+                        profilePic = "No pic data"
+                    } else {
+                        let picURL:URL = URL(string: profilePic)!
+                            let imageData:NSData = NSData(contentsOf: picURL)!
+                            let image = UIImage(data: imageData as Data)
+                        self!.profilePic.image = image
+                        }
+                    
+                    
+                    self!.nameText.text = String("\(firstName) \(lastName)")
+                    self!.joinDateText.text = String(joinedDate.dateValue().description.dropLast(5))
+                    self!.bioText.text = bioMessage
+                    self!.taglineTexr.text = tagline
+                    
+                    profileInfo.profilePic = profilePic
+                    profileInfo.tagline = tagline
+                    profileInfo.bioMessage = bioMessage
+                    profileInfo.joinedDate = self!.joinDateText.text!
+                    profileInfo.storeName = storeName
+                    profileInfo.firstName = firstName
+                    profileInfo.lastName = lastName
+                    profileInfo.email = email
+                    
+                    completion(profileInfo)
+                }
+            }
+        
+    }
+}
+
+public struct Profile {
+    
+    var profilePic: String
+    var joinedDate: String
+    var tagline: String
+    var bioMessage: String
+    var storeName: String
+    var firstName: String
+    var lastName: String
+    var email: String
+    
+    init(profilePic: String
+    , joinedDate: String
+    , tagline: String
+    , bioMessage: String
+    , storeName: String
+    , firstName: String
+    , lastName: String
+    , email: String
+    ) {
+        self.profilePic = profilePic
+        self.joinedDate = joinedDate
+        self.tagline = tagline
+        self.bioMessage = bioMessage
+        self.storeName = storeName
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
     }
 }

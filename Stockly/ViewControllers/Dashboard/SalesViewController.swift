@@ -42,11 +42,11 @@ class SalesViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 for doc in querySnapshot!.documents {
                     
                     //pulling instance data from document and store
-                    var id = doc.documentID
-                    var total = doc.get("cartTotal") as! String
-                    var date = doc.get("purchaseDate") as! Timestamp
-                    var quantity = doc.get("numOfItems") as! Int
-                    var buyerName = doc.get("buyerName") as! String
+                    let id = doc.documentID
+                    let total = doc.get("cartTotal") as! String
+                    let date = doc.get("purchaseDate") as! Timestamp
+                    let quantity = doc.get("numOfItems") as! Int
+                    let buyerName = doc.get("buyerName") as! String
                     
                     
                     items.append(SalesItem(id: id, buyerName: buyerName, itemNumTotal: quantity, total: total, date: date))

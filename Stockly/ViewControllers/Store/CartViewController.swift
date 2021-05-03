@@ -48,28 +48,28 @@ class CartViewController: UIViewController {
                     
 
                     //pulling instance data from document and store in items
-                    var id = doc.documentID
-                    var name = doc.get("name") as! String
-                    var currentStock = doc.get("currentStock") as! Int
-                    var desc = doc.get("desc") as! String
-                    var price = doc.get("price") as! Int
-                    var tags = doc.get("tags") as! String
-                    var dateAdded = doc.get("dateAdded") as! Timestamp
-                    var picId = doc.get("image") as! String
-                    var sellerName = doc.get("sellerName") as! String
-                    var quantity = doc.get("numInCart") as! Int
-                    var salePrice = doc.get("salePrice") as! Int
-                    var picURL:URL = URL(string: picId)!
-                    var userID = doc.get("uid") as! String
+                    let id = doc.documentID
+                    let name = doc.get("name") as! String
+                    let currentStock = doc.get("currentStock") as! Int
+                    let desc = doc.get("desc") as! String
+                    let price = doc.get("price") as! Int
+                    let tags = doc.get("tags") as! String
+                    let dateAdded = doc.get("dateAdded") as! Timestamp
+                    let picId = doc.get("image") as! String
+                    let sellerName = doc.get("sellerName") as! String
+                    let quantity = doc.get("numInCart") as! Int
+                    let salePrice = doc.get("salePrice") as! Int
+                    let picURL:URL = URL(string: picId)!
+                    let userID = doc.get("uid") as! String
                     
                     if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
                         let imageData:NSData = NSData(contentsOf: picURL)!
                         let image = UIImage(data: imageData as Data)
                         pictures.append(image!)
                     } else {
-                    if var data = try? Data(contentsOf: picURL) {
+                    if let data = try? Data(contentsOf: picURL) {
                         DispatchQueue.global(qos: .userInteractive).async {
-                            var tempPic = UIImage(data: data)
+                            let tempPic = UIImage(data: data)
                             pictures.append(tempPic!)
                         }
                     }
@@ -81,7 +81,7 @@ class CartViewController: UIViewController {
                     
                     self.tableView.reloadData()//reload tableView to populate data
                 }
-                orderTotalText.text = String(total)
+                orderTotalText.text = "$".appending(String(total))
                 itemsTotalText.text = String(itemTotal)
             }
 
@@ -92,11 +92,11 @@ class CartViewController: UIViewController {
     @IBAction func toCheckout(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "CheckoutViewController") as? CheckoutViewController {
             var shippingCost:Int = 10
-            var total = Int(orderTotalText.text!)
+            let total = Int(orderTotalText.text!.dropFirst())
             if(total!>100) {
                 shippingCost = 0
             }
-            var tax = Float(total!) * 0.07
+            let tax = Float(total!) * 0.07
             
             vc.subtotal = String(total!)
             vc.shipping = String(shippingCost)
@@ -142,7 +142,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 .collection("cart").document("CartID")
                 .collection("cart_items").document(cartItems[indexPath.row].id).delete()
             
-            var price = cartItems[indexPath.row].price * cartItems[indexPath.row].quantity
+            let price = cartItems[indexPath.row].price * cartItems[indexPath.row].quantity
             orderTotalText.text = String(Int(orderTotalText.text!)! - price) //update order total
           
             itemsTotalText.text = String(Int(itemsTotalText.text!)! - cartItems[indexPath.row].quantity)//update items total

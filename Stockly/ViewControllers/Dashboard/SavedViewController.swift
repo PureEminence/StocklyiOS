@@ -43,32 +43,32 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 for doc in querySnapshot!.documents {
                     
                     //pulling instance data from document and store in items
-                    var id = doc.documentID
-                    var name = doc.get("name") as! String
-                    var costPer = doc.get("price") as! Int
-                    var currentStock = doc.get("currentStock") as! Int
-                    var desc = doc.get("desc") as! String
-                    var price = doc.get("price") as! Int
-                    var tags = doc.get("tags") as! String
-                    var dateAdded = doc.get("dateAdded") as! Timestamp
+                    let id = doc.documentID
+                    let name = doc.get("name") as! String
+                    let costPer = doc.get("price") as! Int
+                    let currentStock = doc.get("currentStock") as! Int
+                    let desc = doc.get("desc") as! String
+                    let price = doc.get("price") as! Int
+                    let tags = doc.get("tags") as! String
+                    let dateAdded = doc.get("dateAdded") as! Timestamp
                     var picId = doc.get("image") as! String
-                    var numSold = doc.get("numSold") as! Int
-                    var sellerName = doc.get("sellerName") as! String
+                    let numSold = doc.get("numSold") as! Int
+                    let sellerName = doc.get("sellerName") as! String
                     
                     
                     //loading image and storing
                     if picId == "" {
                         picId = "No pic data"
                     } else {
-                        var picURL:URL = URL(string: picId)!
+                        let picURL:URL = URL(string: picId)!
                         if querySnapshot!.count == 1 {//DisbatchQueue breaks for 1 item... fetching manually
                             let imageData:NSData = NSData(contentsOf: picURL)!
                             let image = UIImage(data: imageData as Data)
                             pictures.append(image!)
                         } else {
-                        if var data = try? Data(contentsOf: picURL) {
+                            if let data = try? Data(contentsOf: picURL) {
                             DispatchQueue.global(qos: .userInteractive).async {
-                                var tempPic = UIImage(data: data)
+                                let tempPic = UIImage(data: data)
                                 pictures.append(tempPic!)
                             }
                         }
@@ -127,7 +127,8 @@ class SavedViewController: UIViewController, UITableViewDelegate, UITableViewDat
         if let vc = storyboard?.instantiateViewController(withIdentifier: "StoreItemViewController") as? StoreItemViewController {
             
             vc.itemData = items[indexPath.row]
-            vc.imageView.image = pictures[indexPath.row]
+            
+            vc.itemImage = pictures[indexPath.row]
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
