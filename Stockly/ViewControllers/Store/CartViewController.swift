@@ -143,7 +143,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
                 .collection("cart_items").document(cartItems[indexPath.row].id).delete()
             
             let price = cartItems[indexPath.row].price * cartItems[indexPath.row].quantity
-            orderTotalText.text = String(Int(orderTotalText.text!)! - price) //update order total
+            orderTotalText.text = String(Int(orderTotalText.text!.dropFirst())! - price) //update order total
           
             itemsTotalText.text = String(Int(itemsTotalText.text!)! - cartItems[indexPath.row].quantity)//update items total
             

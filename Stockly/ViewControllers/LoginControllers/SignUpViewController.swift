@@ -72,7 +72,7 @@ class SignUpViewController: UIViewController {
                     "lastName": lastName,
                     "storeName": storeName,
                     "email": email,
-                    "created": Date()]
+                    "created": Date().description]
                 
                 //add the store name to auth.currentUser
                 let user = Auth.auth().currentUser

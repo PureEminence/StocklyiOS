@@ -16,15 +16,23 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var joinDateText: UILabel!
     @IBOutlet weak var taglineTexr: UILabel!
     @IBOutlet weak var bioText: UILabel!
+    @IBOutlet weak var ImagePresentText: UILabel!
     
     let db = Firestore.firestore()
     let uid = Auth.auth().currentUser!.uid
+    var profileImage = UIImage()
     
     var profileInfo = Profile(profilePic: "", joinedDate: "", tagline: "", bioMessage: "", storeName: "", firstName: "", lastName: "", email: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        nameText.text = String("\(profileInfo.firstName) \(profileInfo.lastName)")
+        joinDateText.text = profileInfo.joinedDate
+        taglineTexr.text = profileInfo.tagline
+        bioText.text = profileInfo.bioMessage
+        
         getProfileData( { (profileIn) in
            
             self.profileInfo = profileIn
@@ -51,13 +59,17 @@ class ProfileViewController: UIViewController {
     @IBAction func editProfile(_ sender: Any) {
         if let vc = self.storyboard?.instantiateViewController(identifier: "ProfileEditViewController") as? ProfileEditViewController {
             
-            //vc.profilePic.image = profilePic.image
+            vc.profileImage = profilePic.image
             vc.profileInfo = profileInfo
             
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }
+    
+    
+    
+    
     
     
     
@@ -81,20 +93,21 @@ class ProfileViewController: UIViewController {
                     print(error!)
                 } else {
                     var profilePic = ""
-                    var tagline = ""
-                    var bioMessage = ""
+                    var tagline = "No tagline set."
+                    var bioMessage = "No bio set."
                     if doc!.get("profilePic") != nil {
                         profilePic = doc!.get("profilePic")! as! String
-                        
+                    } else {
+                        self!.ImagePresentText.alpha = 1
                     }
                     if doc!.get("tagline") != nil {
                         tagline = doc!.get("tagline")! as! String
                     }
-                    if doc!.get("bioMessage") != nil {
-                        bioMessage = doc!.get("bioMessage")! as! String
+                    if doc!.get("bio") != nil {
+                        bioMessage = doc!.get("bio")! as! String
                     }
                     
-                    let joinedDate = doc!.get("created")! as! Timestamp
+                    let joinedDate = doc!.get("created")! as! String
                     let storeName = doc!.get("storeName")! as! String
                     let firstName = doc!.get("firstName")! as! String
                     let lastName = doc!.get("lastName")! as! String
@@ -106,12 +119,13 @@ class ProfileViewController: UIViewController {
                         let picURL:URL = URL(string: profilePic)!
                             let imageData:NSData = NSData(contentsOf: picURL)!
                             let image = UIImage(data: imageData as Data)
+                        
                         self!.profilePic.image = image
                         }
                     
                     
                     self!.nameText.text = String("\(firstName) \(lastName)")
-                    self!.joinDateText.text = String(joinedDate.dateValue().description.dropLast(5))
+                    self!.joinDateText.text = joinedDate
                     self!.bioText.text = bioMessage
                     self!.taglineTexr.text = tagline
                     
