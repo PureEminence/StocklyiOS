@@ -22,7 +22,7 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var tagsText: UILabel!
     @IBOutlet weak var addedtoCartText: UILabel!
     
-    @IBOutlet weak var sellerNameText: UILabel!//must convert UID to name
+    @IBOutlet weak var sellerNameText: UILabel!
     
     @IBOutlet weak var numItemsScrollPicker: UIPickerView!
     
@@ -41,9 +41,6 @@ class StoreItemViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
-        
-        print("Store ITem dump")
-        dump(itemData)
         
         addedtoCartText.alpha = 0 //hide till needed
         super.viewDidLoad()

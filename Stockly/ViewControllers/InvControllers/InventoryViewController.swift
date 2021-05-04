@@ -90,7 +90,6 @@ class InventoryViewController: UIViewController, UITableViewDataSource, UITableV
         
     //get items size
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(items.count)
         if items.count == 0 {
             noItemText.alpha = 1
         } else {

@@ -42,7 +42,7 @@ class ProfileEditViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func saveProfileBtn(_ sender: Any) {
         
         let insertData:[String: Any] = [
-            "profilePic": urlString,
+            
             "firstName": firstNameText.text!,
             "lastName": lastNameText.text!,
             "email": emailText.text!,
@@ -52,8 +52,6 @@ class ProfileEditViewController: UIViewController, UIImagePickerControllerDelega
             "storeName": profileInfo.storeName
         
     ]
-       
-        dump(insertData)
         db.collection("account").document(uid!)
             .setData(insertData)
         
@@ -103,6 +101,9 @@ class ProfileEditViewController: UIViewController, UIImagePickerControllerDelega
                         return
                     }
                     self.urlString = url.absoluteString
+                    
+                    self.db.collection("account").document(self.uid!)
+                        .updateData(["profilePic" : url.absoluteString])
                 }
         })
     }

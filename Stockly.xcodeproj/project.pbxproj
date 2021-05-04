@@ -63,6 +63,7 @@
 		C9E910BE2634849F0095CCD6 /* SalesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910BD2634849F0095CCD6 /* SalesCell.swift */; };
 		C9E910C1263485E00095CCD6 /* SaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E910C0263485E00095CCD6 /* SaleCell.swift */; };
 		C9FDBC62264075AD0059E864 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDBC61264075AD0059E864 /* HomeViewController.swift */; };
+		C9FDBC642641A29E0059E864 /* StoreProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDBC632641A29E0059E864 /* StoreProfileCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +127,7 @@
 		C9E910BD2634849F0095CCD6 /* SalesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesCell.swift; sourceTree = "<group>"; };
 		C9E910C0263485E00095CCD6 /* SaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCell.swift; sourceTree = "<group>"; };
 		C9FDBC61264075AD0059E864 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C9FDBC632641A29E0059E864 /* StoreProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProfileCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				C9E910C0263485E00095CCD6 /* SaleCell.swift */,
 				C944EDC12634EE4300D79ED5 /* MessagesCell.swift */,
 				C944EDC92635176D00D79ED5 /* UserSearchResultCell.swift */,
+				C9FDBC632641A29E0059E864 /* StoreProfileCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				C9E8B081262E5E4300DBB0ED /* StoreViewController.swift in Sources */,
 				C96DD2ED26242FB600DB0F72 /* Constants.swift in Sources */,
 				C9E910B52633FD7B0095CCD6 /* PurchaseItem.swift in Sources */,
+				C9FDBC642641A29E0059E864 /* StoreProfileCell.swift in Sources */,
 				C9E910BB263483520095CCD6 /* SalesItem.swift in Sources */,
 				C96DD30C2626045100DB0F72 /* ProfileEditViewController.swift in Sources */,
 				C9E910AC2633E80C0095CCD6 /* PurItem.swift in Sources */,

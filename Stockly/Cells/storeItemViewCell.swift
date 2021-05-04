@@ -5,12 +5,18 @@
 //  Created by Matt Owen on 4/22/21.
 //
 
-import UIKit
-import FirebaseStorage
 import SDWebImage
+import UIKit
+import Firebase
+import FirebaseDatabase
+import Foundation
+protocol CellDelegate: class {
+    func CellBtnTapped(tag: Int)
+}
 
 class storeItemViewCell: UITableViewCell {
 
+    weak var delegate: CellDelegate?
     @IBOutlet weak var displayImage: UIImageView!
     @IBOutlet weak var nameText: UILabel!
     @IBOutlet weak var priceText: UILabel!
@@ -18,8 +24,14 @@ class storeItemViewCell: UITableViewCell {
     
     
     @IBAction func saveItemButton(_ sender: Any) {
-        
     }
+    
+    
+    @IBAction func sellerButton(_ sender: UIButton) {
+        delegate?.CellBtnTapped(tag: sender.tag)
+    }
+    
+    
     
     func setItem(item: Item) {
         

@@ -12,12 +12,10 @@ import FirebaseDatabase
 
 class StoreViewController: UIViewController {
 
-    
-    @IBOutlet weak var searchBarOut: UISearchBar!
+
     @IBOutlet weak var tableViewOutlet: UITableView!
     
     let uid = Auth.auth().currentUser?.uid.description
-    var itemCount = 0
     var pictures = [UIImage]()
     var placeholderImage = UIImage(named: "loadingPicture")
     var storeItems = [Item]()
@@ -40,7 +38,7 @@ class StoreViewController: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                 for doc in querySnapshot!.documents {
-                    itemCount+=1
+                    
                     
 
                     //pulling instance data from document and store in items
@@ -78,11 +76,7 @@ class StoreViewController: UIViewController {
                     
                     self.tableViewOutlet.reloadData()//reload tableView to populate data
                 }
-                print("dumping piccs: ")
-                dump(pictures)
-                print("dumping items: ")
-                dump(storeItems)
-                
+            
             }
 
         }
@@ -90,9 +84,8 @@ class StoreViewController: UIViewController {
     
 }
 
-extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    
+extension StoreViewController: UITableViewDataSource, UITableViewDelegate, CellDelegate {
+
     //get items size
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -107,6 +100,9 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
 
         cell.displayImage.image = pictures[indexPath.row]
         cell.setItem(item: item)
+        
+        cell.delegate = self
+        cell.sellerNameButton.tag = indexPath.row
 
         return cell
     }
@@ -145,11 +141,16 @@ extension StoreViewController: UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
-       
         
-        
+    }
     
-        
+    func CellBtnTapped(tag: Int) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "UserStoreViewController") as? UserStoreViewController {
+            
+            vc.userID = storeItems[tag].uid
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }
